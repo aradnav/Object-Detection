@@ -3,19 +3,36 @@ import torch
 import threading
 import supervision as sv
 from ultralytics import YOLO
+import pyrealsense2 as rs
+import numpy as np
 from queue import Queue
-
-class VideoCapture:
-    def __init__(self, index=0, queue_size=1):
-        self.cap = cv2.VideoCapture(index)
-        self.queue = Queue(queue_size)
+class RealSenseCapture:
+    def __init__(self):
+        self.pipeline = rs.pipeline()
+        self.config = rs.config()
+        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+        self.pipeline.start(config=self.config)
+        self.align_to = rs.stream.color
+        self.align = rs.align(self.align_to)
+        self.queue = Queue()
         self.running = True
 
         def capture_loop(self):
             while self.running:
-                ret, frame = self.cap.read()
-                if ret:
-                    self.queue.put((ret, frame))
+                frames = self.pipeline.wait_for_frames(timeout_ms=10000)
+                if not frames:
+                    continue
+
+                aligned_frames = self.align.process(frames)
+                depth_frame = aligned_frames.get_depth_frame()
+                color_frame = aligned_frames.get_color_frame()
+                if not depth_frame or not color_frame:
+                    continue
+
+                depth_image = np.asanyarray(depth_frame.get_data())
+                color_image = np.asanyarray(color_frame.get_data())
+                self.queue.put((color_image, depth_image))
 
         self.thread = threading.Thread(target=capture_loop, args=(self,))
         self.thread.start()
@@ -26,13 +43,11 @@ class VideoCapture:
     def release(self):
         self.running = False
         self.thread.join()
-        self.cap.release()
+        self.pipeline.stop()
 
 def live_object_detection():
-    '''main Function'''
-    # Initialize the camera
-    cap = VideoCapture(0, queue_size=2)
-    model = YOLO("model_- 22 january 2024 10_45.pt")
+    cap = RealSenseCapture()
+    model = YOLO("model_- 22 january 2024 10_45.pt")  # Corrected the model file path
 
     box_annotator = sv.BoxAnnotator(
         thickness=2,
@@ -43,35 +58,28 @@ def live_object_detection():
     frame_count = 0
     object_detection_counter = 0
     while True:
-        ret, frame = cap.read()
-        frame = cv2.resize(frame, (320, 240))  # Reduce frame size
+        color_image, depth_image = cap.read()
+        frame = color_image  # Define frame here
 
-        if frame_count % 20 == 0:  # Perform object detection every 20 frames
+        if frame_count % 20 == 0:
             if object_detection_counter % 2 == 0:
-                data = model(frame)
+                data = model(color_image)
                 detection = sv.Detections.from_ultralytics(data[0])
 
                 label = [f"{model.model.names[ci]} {con:0.2f}"
                          for _, _, con, ci, _ in detection]
 
-                if not ret:
-                    print("Error: Failed to grab frame.")
-                    break
-
-                frame = box_annotator.annotate(scene=frame, detections=detection, labels=label)
+                frame = box_annotator.annotate(scene=color_image, detections=detection, labels=label)
 
                 object_detection_counter += 1
 
-        # Display the live camera feed with object detection annotations
         cv2.imshow("Live Object Detection", frame)
 
-        # Exit the loop if the 'q' key is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
         frame_count += 1
 
-    # Release the camera and close the OpenCV window
     cap.release()
     cv2.destroyAllWindows()
 
