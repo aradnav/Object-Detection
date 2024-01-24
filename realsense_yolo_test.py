@@ -7,6 +7,7 @@ import pyrealsense2 as rs
 import numpy as np
 from queue import Queue
 class RealSenseCapture:
+
     def __init__(self):
         self.pipeline = rs.pipeline()
         self.config = rs.config()
@@ -57,12 +58,11 @@ def live_object_detection():
 
     frame_count = 0
     object_detection_counter = 0
+    frame = None
     while True:
         color_image, depth_image = cap.read()
-        frame = color_image  # Define frame here
 
         if frame_count % 20 == 0:
-            if object_detection_counter % 2 == 0:
                 data = model(color_image)
                 detection = sv.Detections.from_ultralytics(data[0])
 
