@@ -48,6 +48,7 @@ class RealSenseCapture:
 def live_object_detection():
     cap = RealSenseCapture()
     model = YOLO("model_- 22 january 2024 10_45.pt")  # Corrected the model file path
+    class_name = ['blueball','purpleball', 'redball']
 
     box_annotator = sv.BoxAnnotator(
         thickness=2,
