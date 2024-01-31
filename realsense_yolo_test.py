@@ -48,7 +48,7 @@ class RealSenseCapture:
 
 def live_object_detection():
     cap = RealSenseCapture()
-    model = YOLO("model_- 31 january 2024 11_41.pt")  # Corrected the model file path
+    model = YOLO("model_- 23 january 2024 15_03.pt")  # Corrected the model file path
 
     box_annotator = sv.BoxAnnotator(
         thickness=2,
@@ -62,20 +62,15 @@ def live_object_detection():
     while True:
         color_image, depth_image = cap.read()
 
-        if frame_count % 10 == 0:
+        if frame_count % 20 == 0:
                 data = model(color_image)
-                print(f"Raw model output: {data}")
-                detections = sv.Detections.from_ultralytics(data[0])
+                detection = sv.Detections.from_ultralytics(data[0])
 
-                label = [f"{model.model.names[ci]} {con:0.1f}"
-                         for _, _, con, ci, _ in detections]
-                print(f"Data from model: {data}")  # Debug line
-                print(f"Detections: {detections}")  # Debug line
-                print(f"Labels: {label}")  # Debug line
+                label = [f"{model.model.names[ci]} {con:0.2f}"
+                         for _, _, con, ci, _ in detection]
 
-                frame = box_annotator.annotate(scene=color_image, detections=detections, labels=label)
-                print(f"Number of detections: {len(detections)}")  # Debug line
-                print(f"Number of labels: {len(label)}")  # Debug line
+                frame = box_annotator.annotate(scene=color_image, detections=detection, labels=label)
+
                 object_detection_counter += 1
 
         cv2.imshow("Live Object Detection", frame)
