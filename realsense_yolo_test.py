@@ -62,6 +62,21 @@ def live_object_detection():
     while True:
         color_image, depth_image = cap.read()
 
+
+        if frame_count % 8 == 0:
+                data = model(color_image)
+                print(f"Raw model output: {data}")
+                detections = sv.Detections.from_ultralytics(data[0])
+
+                label = [f"{model.model.names[ci]} {con:0.2f}"
+                         for _, _, con, ci, _ in detections]
+                print(f"Data from model: {data}")  # Debug line
+                print(f"Detections: {detections}")  # Debug line
+                print(f"Labels: {label}")  # Debug line
+
+                frame = box_annotator.annotate(scene=color_image, detections=detections, labels=label)
+                print(f"Number of detections: {len(detections)}")  # Debug line
+                print(f"Number of labels: {len(label)}")  # Debug line
         if frame_count % 20 == 0:
                 data = model(color_image)
                 detection = sv.Detections.from_ultralytics(data[0])
