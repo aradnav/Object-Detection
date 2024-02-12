@@ -62,12 +62,12 @@ def live_object_detection():
     while True:
         color_image, depth_image = cap.read()
 
-        if frame_count % 10 == 0:
+        if frame_count % 8 == 0:
                 data = model(color_image)
                 print(f"Raw model output: {data}")
                 detections = sv.Detections.from_ultralytics(data[0])
 
-                label = [f"{model.model.names[ci]} {con:0.1f}"
+                label = [f"{model.model.names[ci]} {con:0.2f}"
                          for _, _, con, ci, _ in detections]
                 print(f"Data from model: {data}")  # Debug line
                 print(f"Detections: {detections}")  # Debug line
