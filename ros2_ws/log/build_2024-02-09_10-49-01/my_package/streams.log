@@ -1,0 +1,27 @@
+[2.108s] Invoking command in '/home/vandara/ros2_ws/src/my_package': PYTHONPATH=/home/vandara/ros2_ws/build/my_package/prefix_override:/home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/vandara/ros2_ws/build/my_package/build install --record /home/vandara/ros2_ws/build/my_package/install.log --install-scripts $base/lib/my_package --single-version-externally-managed
+[2.394s] running egg_info
+[2.394s] writing ../../build/my_package/my_package.egg-info/PKG-INFO
+[2.395s] writing dependency_links to ../../build/my_package/my_package.egg-info/dependency_links.txt
+[2.395s] writing entry points to ../../build/my_package/my_package.egg-info/entry_points.txt
+[2.395s] writing requirements to ../../build/my_package/my_package.egg-info/requires.txt
+[2.396s] writing top-level names to ../../build/my_package/my_package.egg-info/top_level.txt
+[2.438s] reading manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[2.439s] writing manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[2.439s] running build
+[2.439s] running build_py
+[2.439s] copying my_package/live_detection_node.py -> /home/vandara/ros2_ws/build/my_package/build/lib/my_package
+[2.440s] running install
+[2.441s] running install_lib
+[2.442s] copying /home/vandara/ros2_ws/build/my_package/build/lib/my_package/live_detection_node.py -> /home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package
+[2.443s] byte-compiling /home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/live_detection_node.py to live_detection_node.cpython-38.pyc
+[2.445s] running install_data
+[2.446s] running install_egg_info
+[2.448s] removing '/home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info' (and everything under it)
+[2.448s] Copying ../../build/my_package/my_package.egg-info to /home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info
+[2.450s] running install_scripts
+[2.470s] Installing live_detection_node script to /home/vandara/ros2_ws/install/my_package/lib/my_package
+[2.471s] Installing main script to /home/vandara/ros2_ws/install/my_package/lib/my_package
+[2.471s] Installing my_node script to /home/vandara/ros2_ws/install/my_package/lib/my_package
+[2.471s] Installing utils script to /home/vandara/ros2_ws/install/my_package/lib/my_package
+[2.472s] writing list of installed files to '/home/vandara/ros2_ws/build/my_package/install.log'
+[2.496s] Invoked command in '/home/vandara/ros2_ws/src/my_package' returned '0': PYTHONPATH=/home/vandara/ros2_ws/build/my_package/prefix_override:/home/vandara/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/vandara/ros2_ws/build/my_package/build install --record /home/vandara/ros2_ws/build/my_package/install.log --install-scripts $base/lib/my_package --single-version-externally-managed
