@@ -5,4 +5,3 @@ main = my_package.main:main
 my_node = my_package.my_node:main
 object_detection_subscriber = my_package.object_detection_subscriber:main
 utils = my_package.utils:main
-

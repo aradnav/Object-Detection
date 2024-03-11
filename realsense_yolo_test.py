@@ -1,102 +1,148 @@
 import cv2
-import torch
-import threading
-import supervision as sv
-from ultralytics import YOLO
-import pyrealsense2 as rs
 import numpy as np
-from queue import Queue
-class RealSenseCapture:
+import pyrealsense2 as rs
+import tensorrt as trt
+import pycuda.driver as cuda
+import pycuda.autoinit
 
-    def __init__(self):
-        self.pipeline = rs.pipeline()
-        self.config = rs.config()
-        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-        self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-        self.pipeline.start(config=self.config)
-        self.align_to = rs.stream.color
-        self.align = rs.align(self.align_to)
-        self.queue = Queue()
-        self.running = True
+def interpret_output(output):
+    # Adjust these values to match your model's output format
+    grid_size = 13
+    num_anchors = 5
+    num_classes = 20
 
-        def capture_loop(self):
-            while self.running:
-                frames = self.pipeline.wait_for_frames(timeout_ms=10000)
-                if not frames:
-                    continue
+    # Reshape the output tensor
+    output = output.reshape((grid_size, grid_size, num_anchors, 5 + num_classes))
 
-                aligned_frames = self.align.process(frames)
-                depth_frame = aligned_frames.get_depth_frame()
-                color_frame = aligned_frames.get_color_frame()
-                if not depth_frame or not color_frame:
-                    continue
+    # Extract the bounding box coordinates and dimensions
+    box_xy = output[..., :2]
+    box_wh = output[..., 2:4]
 
-                depth_image = np.asanyarray(depth_frame.get_data())
-                color_image = np.asanyarray(color_frame.get_data())
-                self.queue.put((color_image, depth_image))
+    # Compute the box corners (used to draw the bounding box)
+    box_mins = box_xy - box_wh / 2
+    box_maxes = box_xy + box_wh / 2
 
-        self.thread = threading.Thread(target=capture_loop, args=(self,))
-        self.thread.start()
+    # Extract the object confidence
+    object_confidence = output[..., 4:5]
 
-    def read(self):
-        return self.queue.get()
+    # Extract the class probabilities
+    class_probs = output[..., 5:]
 
-    def release(self):
-        self.running = False
-        self.thread.join()
-        self.pipeline.stop()
+    # Compute the class scores
+    class_scores = object_confidence * class_probs
 
-def live_object_detection():
-    cap = RealSenseCapture()
-    model = YOLO("model_- 23 january 2024 15_03.pt")  # Corrected the model file path
+    # Find the class with the highest score
+    classes = np.argmax(class_scores, axis=-1)
+    scores = np.max(class_scores, axis=-1)
 
-    box_annotator = sv.BoxAnnotator(
-        thickness=2,
-        text_thickness=2,
-        text_scale=1
-    )
+    # Create a list of detections
+    detections = []
+    for i in range(grid_size):
+        for j in range(grid_size):
+            for k in range(num_anchors):
+                if scores[i, j, k] > 0.5:  # adjust this to your desired confidence threshold
+                    x, y, w, h = box_mins[i, j, k, 0], box_mins[i, j, k, 1], box_maxes[i, j, k, 0], box_maxes[i, j, k, 1]
+                    detections.append([classes[i, j, k], scores[i, j, k], x, y, w, h])
 
-    frame_count = 0
-    object_detection_counter = 0
-    frame = None
+    return detections
+def interpret_output(output):
+    # Print the shape of the output
+    print("Output shape:", output.shape)
+
+    # Adjust these values to match your model's output format
+    grid_size = 13
+    num_anchors = 5
+    num_classes = 20
+
+    # Calculate the total size of the expected shape
+    expected_size = grid_size * grid_size * num_anchors * (5 + num_classes)
+
+    # Check if the output size matches the expected size
+    if output.size != expected_size:
+        print(f"Warning: output size ({output.size}) does not match expected size ({expected_size}).")
+        return []
+
+    # Reshape the output tensor
+    output = output.reshape((grid_size, grid_size, num_anchors, 5 + num_classes))
+
+# Initialize RealSense
+pipeline = rs.pipeline()
+config = rs.config()
+config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+pipeline.start(config)
+
+# Load TensorRT model
+TRT_MODEL_PATH = "model.trt"
+runtime = trt.Runtime(trt.Logger(trt.Logger.INFO))
+
+with open(TRT_MODEL_PATH, "rb") as f:
+    engine_data = f.read()
+engine = runtime.deserialize_cuda_engine(engine_data)
+context = engine.create_execution_context()
+
+# Allocate buffers
+input_name = engine.get_binding_name(0)
+output_name = engine.get_binding_name(1)
+input_shape = engine.get_binding_shape(input_name)
+output_shape = engine.get_binding_shape(output_name)
+d_input = cuda.mem_alloc(trt.volume(input_shape) * np.dtype(np.float32).itemsize)
+d_output = cuda.mem_alloc(trt.volume(output_shape) * np.dtype(np.float32).itemsize)
+bindings = [int(d_input), int(d_output)] 
+context.set_binding_shape(0, input_shape)
+context.set_binding_shape(1, output_shape)
+context.execute_v2(bindings=bindings)
+
+try:
     while True:
-        color_image, depth_image = cap.read()
+        # Get a new frame
+        frames = pipeline.wait_for_frames()
+        color_frame = frames.get_color_frame()
+        if not color_frame:
+            continue
+        frame = np.asanyarray(color_frame.get_data())
 
+        # Create a separate variable for the image to display
+        display_image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
-        if frame_count % 8 == 0:
-                data = model(color_image)
-                print(f"Raw model output: {data}")
-                detections = sv.Detections.from_ultralytics(data[0])
+        # Preprocess the frame
+        frame = cv2.resize(frame, (224, 224))  # adjust this to your model's input size
+        frame = frame.transpose((2, 0, 1))  # adjust this to your model's input format
+        frame = frame.astype(np.float32) / 255.0  # adjust this to your model's input format
 
-                label = [f"{model.model.names[ci]} {con:0.2f}"
-                         for _, _, con, ci, _ in detections]
-                print(f"Data from model: {data}")  # Debug line
-                print(f"Detections: {detections}")  # Debug line
-                print(f"Labels: {label}")  # Debug line
+        # Ensure the frame data is contiguous in memory before copying it to the GPU
+        frame = np.ascontiguousarray(frame)
 
-                frame = box_annotator.annotate(scene=color_image, detections=detections, labels=label)
-                print(f"Number of detections: {len(detections)}")  # Debug line
-                print(f"Number of labels: {len(label)}")  # Debug line
-        if frame_count % 20 == 0:
-                data = model(color_image)
-                detection = sv.Detections.from_ultralytics(data[0])
+        # Calculate the size of the input and output in bytes
+        input_size = trt.volume(input_shape) * np.dtype(np.float32).itemsize
+        output_size = trt.volume(output_shape) * np.dtype(np.float32).itemsize
 
-                label = [f"{model.model.names[ci]} {con:0.2f}"
-                         for _, _, con, ci, _ in detection]
+        # Allocate buffers
+        d_input = cuda.mem_alloc(input_size)
+        d_output = cuda.mem_alloc(output_size)
 
-                frame = box_annotator.annotate(scene=color_image, detections=detection, labels=label)
+        # Print debugging information
+        print("Frame size:", frame.size)
+        print("GPU input memory size:", input_size)
+        print("GPU output memory size:", output_size)
+        print("Frame is contiguous:", frame.flags['C_CONTIGUOUS'])
+        print("Current CUDA context:", cuda.Context.get_current())
 
-                object_detection_counter += 1
+        # Run the frame through the model
+        cuda.memcpy_htod(d_input, frame.ravel())
+        context.execute(batch_size=1, bindings=bindings)
+        output = np.empty(output_shape, dtype=np.float32)  # Replace output_size with output_shape
+        cuda.memcpy_dtoh(output, d_output)
+        # Interpret the output
+        detections = interpret_output(output)
 
-        cv2.imshow("Live Object Detection", frame)
+        # Display the results
+        print("Detections:", detections)
+        cv2.imshow('RealSense', display_image)
+        cv2.waitKey(1)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+finally:
+    # Stop streaming
+    pipeline.stop()
 
-        frame_count += 1
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-# Run the live object detection function
-live_object_detection()
+    # Free the GPU memory
+    del d_input, d_output  # Replace cuda.mem_free with del

@@ -1,0 +1,50 @@
+[5.926s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/object_detection build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log --install-scripts $base/lib/object_detection --single-version-externally-managed
+[6.209s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:472: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[6.209s] !!
+[6.210s] 
+[6.210s]         ********************************************************************************
+[6.210s]         Usage of dash-separated 'script-dir' will not be supported in future
+[6.210s]         versions. Please use the underscore name 'script_dir' instead.
+[6.210s] 
+[6.210s]         By 2024-Sep-26, you need to update your project and remove deprecated calls
+[6.211s]         or your builds will no longer be supported.
+[6.211s] 
+[6.211s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[6.211s]         ********************************************************************************
+[6.211s] 
+[6.211s] !!
+[6.211s]   opt = self.warn_dash_deprecation(opt, section)
+[6.450s] running egg_info
+[6.488s] writing ../../build/object_detection/object_detection.egg-info/PKG-INFO
+[6.489s] writing dependency_links to ../../build/object_detection/object_detection.egg-info/dependency_links.txt
+[6.490s] writing requirements to ../../build/object_detection/object_detection.egg-info/requires.txt
+[6.490s] writing top-level names to ../../build/object_detection/object_detection.egg-info/top_level.txt
+[6.783s] reading manifest file '../../build/object_detection/object_detection.egg-info/SOURCES.txt'
+[6.784s] writing manifest file '../../build/object_detection/object_detection.egg-info/SOURCES.txt'
+[6.785s] running build
+[6.785s] running build_py
+[6.785s] copying object_detection/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build/lib/object_detection
+[6.786s] running install
+[6.786s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[6.786s] !!
+[6.787s] 
+[6.787s]         ********************************************************************************
+[6.787s]         Please avoid running ``setup.py`` directly.
+[6.787s]         Instead, use pypa/build, pypa/installer or other
+[6.787s]         standards-based tools.
+[6.787s] 
+[6.788s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[6.788s]         ********************************************************************************
+[6.788s] 
+[6.788s] !!
+[6.788s]   self.initialize_options()
+[6.797s] running install_lib
+[6.837s] running install_data
+[6.875s] copying resource/object_detection -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/ament_index/resource_index/packages
+[6.876s] copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection
+[6.876s] running install_egg_info
+[6.917s] removing '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages/object_detection-0.0.0-py3.8.egg-info' (and everything under it)
+[6.917s] Copying ../../build/object_detection/object_detection.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages/object_detection-0.0.0-py3.8.egg-info
+[6.919s] running install_scripts
+[7.035s] writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log'
+[7.892s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection' returned '0': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/object_detection build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log --install-scripts $base/lib/object_detection --single-version-externally-managed
