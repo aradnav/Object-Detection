@@ -61,7 +61,7 @@ def live_object_detection():
     config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
     profile = pipeline.start(config)
 
-    model = YOLO("model_- 31 january 2024 11_41.pt")
+    model = YOLO("/home/cadt-02/Object-Detection/ros2_ws/model_- 31 january 2024 11_41.pt")
 
     # Get depth scale
     depth_sensor = profile.get_device().first_depth_sensor()

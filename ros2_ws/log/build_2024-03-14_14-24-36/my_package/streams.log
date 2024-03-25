@@ -1,0 +1,65 @@
+[7.681s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --install-scripts $base/lib/my_package --single-version-externally-managed
+[7.977s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:472: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[7.978s] !!
+[7.978s] 
+[7.978s]         ********************************************************************************
+[7.978s]         Usage of dash-separated 'script-dir' will not be supported in future
+[7.978s]         versions. Please use the underscore name 'script_dir' instead.
+[7.978s] 
+[7.978s]         By 2024-Sep-26, you need to update your project and remove deprecated calls
+[7.979s]         or your builds will no longer be supported.
+[7.979s] 
+[7.979s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[7.979s]         ********************************************************************************
+[7.979s] 
+[7.979s] !!
+[7.979s]   opt = self.warn_dash_deprecation(opt, section)
+[8.230s] running egg_info
+[8.271s] writing ../../build/my_package/my_package.egg-info/PKG-INFO
+[8.272s] writing dependency_links to ../../build/my_package/my_package.egg-info/dependency_links.txt
+[8.272s] writing entry points to ../../build/my_package/my_package.egg-info/entry_points.txt
+[8.273s] writing requirements to ../../build/my_package/my_package.egg-info/requires.txt
+[8.273s] writing top-level names to ../../build/my_package/my_package.egg-info/top_level.txt
+[8.581s] reading manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.583s] writing manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.583s] running build
+[8.584s] running build_py
+[8.584s] copying my_package/camera_frame_publisher.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.585s] copying my_package/utils.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.585s] copying my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.585s] copying my_package/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.586s] copying my_package/main.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.586s] copying my_package/my_node.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.587s] copying my_package/object_detection_subscriber.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.587s] running install
+[8.588s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[8.588s] !!
+[8.588s] 
+[8.589s]         ********************************************************************************
+[8.589s]         Please avoid running ``setup.py`` directly.
+[8.589s]         Instead, use pypa/build, pypa/installer or other
+[8.590s]         standards-based tools.
+[8.590s] 
+[8.590s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[8.590s]         ********************************************************************************
+[8.591s] 
+[8.591s] !!
+[8.591s]   self.initialize_options()
+[8.599s] running install_lib
+[8.641s] copying /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package
+[8.642s] byte-compiling /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/live_detection_node.py to live_detection_node.cpython-38.pyc
+[8.646s] running install_data
+[8.687s] copying resource/my_package -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/ament_index/resource_index/packages
+[8.687s] copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package
+[8.687s] running install_egg_info
+[8.730s] removing '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info' (and everything under it)
+[8.730s] Copying ../../build/my_package/my_package.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info
+[8.732s] running install_scripts
+[8.853s] Installing camera_frame_publisher script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.853s] Installing live_detection_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.854s] Installing main script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.854s] Installing my_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.855s] Installing object_detection_subscriber script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.855s] Installing utils script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.856s] writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log'
+[8.952s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package' returned '0': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --install-scripts $base/lib/my_package --single-version-externally-managed

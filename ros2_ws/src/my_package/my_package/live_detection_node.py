@@ -2,192 +2,168 @@ import rclpy
 from rclpy.node import Node
 import cv2
 import os 
-import numpy as np
 import time
 import pyrealsense2 as rs
-import tensorrt as trt
-import pycuda.driver as cuda
-import pycuda.autoinit
-
-from my_package.utils import Utils
+import torch
+import numpy as np
+from ultralytics import YOLO
+import math
+import supervision as sv
 
 class LiveObjectDetectionNode(Node):
+
     def __init__(self):
         super().__init__('live_object_detection_node')
-        self.create_timer(0.5, self.update)  # Adjust the update rate to 2 frames per second
-
-        # Initialize camera and TensorRT model
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = YOLO("/home/cadt-02/Object-Detection/ros2_ws/model_- 18 march 2024 15_19.pt")
         self.initialize_camera()
-        self.initialize_tensorrt_model()
-        self.allocate_buffers()
-
-        # Define grid parameters
-        self.num_rows = 3
-        self.num_cols = 3
-        self.grid_color = (255, 255, 255)
-        self.grid_thickness = 1
-
-        # Initialize time for frame rate control
-        self.last_update_time = time.time()
 
     def initialize_camera(self):
-        try:
-            # Initialize the RealSense D455 camera
-            self.pipeline = rs.pipeline()
-            self.config = rs.config()
-            self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-            self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-            self.profile = self.pipeline.start(self.config)
-        except Exception as e:
-            self.get_logger().error(f"Failed to initialize camera: {e}")
-            self.destroy_node()
-            return
+        # Initialize the RealSense D455 camera
+        self.pipeline = rs.pipeline()
+        self.config = rs.config()
+        self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.profile = self.pipeline.start(self.config)
 
-    def initialize_tensorrt_model(self):
-        try:
-            # Load TensorRT optimized model
-            TRT_MODEL_PATH = "/home/cadt-02/Object-Detection/model.trt"
-            # Check if the model file exists
-            if not os.path.exists(TRT_MODEL_PATH):
-                raise FileNotFoundError(f"TensorRT model file not found: {TRT_MODEL_PATH}")          
-            self.runtime = trt.Runtime(trt.Logger(trt.Logger.INFO))      
-            with open(TRT_MODEL_PATH, "rb") as f:
-                engine_data = f.read()
-            # Check if the engine data is not empty
-            if not engine_data:
-                raise ValueError("The TensorRT model file is empty.")          
-            self.engine = self.runtime.deserialize_cuda_engine(engine_data)     
-            if self.engine is None:
-                raise ValueError("Failed to deserialize the TensorRT engine.")        
-            self.context = self.engine.create_execution_context()
-            # Set optimization profile dimensions
-            if self.engine.has_implicit_batch_dimension:
-                raise ValueError("The TensorRT engine has an implicit batch dimension. This code is designed for explicit batch dimensions.")
-            if self.engine.num_optimization_profiles == 0:
-                raise ValueError("The TensorRT engine does not have any optimization profiles defined.")
-            self.context.active_optimization_profile = 0
-            for binding in range(self.engine.num_bindings):
-                if self.engine.binding_is_input(binding):
-                    input_name = self.engine.get_binding_name(binding)
-                    min_shape, opt_shape, max_shape = self.engine.get_profile_shape(0, input_name)
-                    print(f"Binding: {binding}, Optimal Shape: {opt_shape}")
-                    if not self.context.set_binding_shape(binding, opt_shape):
-                        raise ValueError(f"Failed to set the binding shape for input {input_name}.")
-        except Exception as e:
-            self.get_logger().error(f"Failed to load TensorRT model: {e}")
-            self.destroy_node()
-            return
+    def determine_movement(self, center_x, frame_width):
+        """
+        Determine the direction in which the camera needs to move.
+        """
+        if center_x < frame_width // 3:
+            return "left"
+        elif center_x > 2 * frame_width // 3:
+            return "right"
+        else:
+            return "center"
 
-    def allocate_buffers(self):
-        # Allocate device memory for inputs and outputs
-        self.inputs = []
-        self.outputs = []
-        self.bindings = []
-        self.stream = cuda.Stream()
-        for binding in range(self.engine.num_bindings):
-            size = trt.volume(self.engine.get_binding_shape(binding)) * self.engine.max_batch_size
-            dtype = trt.nptype(self.engine.get_binding_dtype(binding))
-            host_mem = cuda.pagelocked_empty(size, dtype)
-            device_mem = cuda.mem_alloc(host_mem.nbytes)
-            self.bindings.append(int(device_mem))
-            if self.engine.binding_is_input(binding):
-                self.inputs.append((host_mem, device_mem))
-            else:
-                self.outputs.append((host_mem, device_mem))
+    def calculate_angle(self, center_x1, center_x2, frame_width, fov):
+        """
+        Calculate the angle by which the camera needs to rotate.
+        """
+        # Calculate the distance from the center of the frame to the center of each ball
+        distance1 = abs(center_x1 - frame_width / 2)
+        distance2 = abs(center_x2 - frame_width / 2)
+
+        # Calculate the angle based on the distances and field of view (fov)
+        angle = math.atan(distance2 / (frame_width / 2) * math.tan(fov / 2)) - math.atan(distance1 / (frame_width / 2) * math.tan(fov / 2))
+        return angle
+
+    def calculate_middle_angle(self, center_x, frame_width):
+        """
+        Calculate the angle to adjust the camera to the middle position.
+        """
+        distance = center_x - frame_width / 2
+        angle = math.atan(distance / (frame_width / 2))
+        return angle
+
+    def draw_grid(self, image, num_rows, num_cols, color, thickness):
+        """
+        Draw a grid overlay on the image.
+        """
+        height, width = image.shape[:2]
+        cell_width = width // num_cols
+        cell_height = height // num_rows
+
+        # Draw horizontal lines
+        for i in range(1, num_rows):
+            cv2.line(image, (0, i * cell_height), (width, i * cell_height), color, thickness)
+
+        # Draw vertical lines
+        for i in range(1, num_cols):
+            cv2.line(image, (i * cell_width, 0), (i * cell_width, height), color, thickness)
 
     def update(self):
-        current_time = time.time()
-        if current_time - self.last_update_time < 0.5:  # Throttle update rate to 2 frames per second
-            return
+        '''main Function'''
+        while rclpy.ok():
+            # Get depth scale
+            depth_sensor = self.profile.get_device().first_depth_sensor()
+            depth_scale = depth_sensor.get_depth_scale()
 
-        self.last_update_time = current_time
+            # Define camera parameters
+            fov = math.radians(69.4)  # Horizontal field of view in radians
 
-        try:
-            frames = self.pipeline.wait_for_frames(timeout_ms=10000)  # Adjust the timeout value as needed
+            # Define grid parameters
+            grid_color = (255, 255, 255)
+            grid_thickness = 1
+            num_rows = 3
+            num_cols = 3
+
+            frames = self.pipeline.wait_for_frames()
             color_frame = frames.get_color_frame()
             depth_frame = frames.get_depth_frame()
             if not color_frame or not depth_frame:
-                self.get_logger().warn("No valid frames received")
-                return
+                continue
 
             color_image = np.asanyarray(color_frame.get_data())
+            depth_image = np.asanyarray(depth_frame.get_data())
+
+            data = self.model(color_image)
+            detections = sv.Detections.from_ultralytics(data[0])
 
             annotated_image = color_image.copy()
 
-            # Perform object detection using TensorRT
-            preprocessed_image = preprocess_image(color_image)
-            np.copyto(self.inputs[0][0], preprocessed_image.ravel())
+            # Initialize variables to store the center positions and depths of the detected balls
+            center_x_red = None
+            center_x_blue = None
+            depth_red = None
+            depth_blue = None
 
-            # Perform inference
-            self.context.execute_async(bindings=self.bindings, stream_handle=self.stream.handle)
+            for det in detections:
+                label = f"{self.model.model.names[det[3]]} {det[2]:.2f}"  # Accessing class index and confidence from tuple
+                box = det[0]
+                # Get center pixel of the detection box
+                center_x = int((box[0] + box[2]) / 2)
+                center_y = int((box[1] + box[3]) / 2)
+                # Get depth value at the center pixel
+                depth_value = depth_image[center_y, center_x]
+                # Convert depth value to meters using depth scale
+                depth = depth_value * depth_scale
+                label += f" Depth: {depth:.2f} meters"
 
-            # Transfer predictions back from device
-            cuda.memcpy_dtoh_async(self.outputs[0][0], self.outputs[0][1], self.stream)
+                # Draw bounding box on the image
+                x1, y1, x2, y2 = box.astype(int)
+                cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
-            # Synchronize the stream
-            self.stream.synchronize()
+                # Store center positions and depths of red and blue balls
+                if self.model.model.names[det[3]] == "red ball":
+                    center_x_red = center_x
+                    depth_red = depth
+                elif self.model.model.names[det[3]] == "blue ball":
+                    center_x_blue = center_x
+                    depth_blue = depth
 
-            # Post-process output
-            detections = postprocess_output(self.outputs[0][0])
+            if center_x_red is not None and center_x_blue is not None:
+                # Calculate the angle to rotate the camera based on the depths of the balls
+                angle = self.calculate_angle(center_x_red, center_x_blue, color_image.shape[1], fov)
+                print(f"Rotate camera by {math.degrees(angle):.2f} degrees")
 
-            # Draw bounding boxes
-            for detection in detections:
-                label, confidence, box = detection
-                draw_bounding_box(annotated_image, box, label, confidence)
-            
-            # Draw lines
-            self.draw_lines(annotated_image)
+            if center_x_red is not None:
+                # Calculate the angle to adjust the camera to the middle position
+                middle_angle = self.calculate_middle_angle(center_x_red, color_image.shape[1])
+                print(f"Adjust camera to middle by {math.degrees(middle_angle):.2f} degrees")
 
             # Draw grid overlay
-            self.draw_grid(annotated_image)
+            self.draw_grid(annotated_image, num_rows, num_cols, grid_color, grid_thickness)
 
             # Display the live camera feed with object detection annotations
             cv2.imshow("Live Object Detection", annotated_image)
 
             # Exit the loop if the 'q' key is pressed
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                self.pipeline.stop()
-                cv2.destroyAllWindows()
-                rclpy.shutdown()
+            key = cv2.waitKey(1)
+            if key & 0xFF == ord('q'):
+                break
 
-        except Exception as e:
-            self.get_logger().error(f"Error in update loop: {e}")
-
-    def draw_lines(self, image):
-        line_length = 100
-        center_x = image.shape[1] // 2
-        center_y = image.shape[0] // 2
-        line1_start = (center_x - line_length, center_y)
-        line1_end = (center_x + line_length, center_y)
-        line2_start = (center_x, center_y - line_length)
-        line2_end = (center_x, center_y + line_length)
-
-        # Draw lines
-        cv2.line(image, line1_start, line1_end, (0, 255, 0), 2)
-        cv2.line(image, line2_start, line2_end, (0, 255, 0), 2)
-
-    def draw_grid(self, image):
-        """
-        Draw a grid overlay on the image.
-        """
-        height, width = image.shape[:2]
-        cell_width = width // self.num_cols
-        cell_height = height // self.num_rows
-
-        # Draw horizontal lines
-        for i in range(1, self.num_rows):
-            cv2.line(image, (0, i * cell_height), (width, i * cell_height), self.grid_color, self.grid_thickness)
-
-        # Draw vertical lines
-        for i in range(1, self.num_cols):
-            cv2.line(image, (i * cell_width, 0), (i * cell_width, height), self.grid_color, self.grid_thickness)
-
+        # Release the camera and close the OpenCV window
+        self.pipeline.stop()
+        cv2.destroyAllWindows()
 
 def main(args=None):
     rclpy.init(args=args)
     live_object_detection_node = LiveObjectDetectionNode()
     try:
-        rclpy.spin(live_object_detection_node)
+        live_object_detection_node.update()
     except KeyboardInterrupt:
         pass
     finally:
