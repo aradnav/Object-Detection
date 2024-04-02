@@ -57,6 +57,49 @@ class LiveObjectDetectionNode(Node):
         angle = math.atan(distance / (frame_width / 2))
         return angle
 
+    def draw_red_dot(self, image):
+        """
+        Draw a red dot in the middle of the camera's field of view.
+        """
+        height, width, _ = image.shape
+        # Calculate the coordinates of the middle point
+        center_x = width // 2
+        center_y = height // 2
+        # Draw a red dot at the middle point
+        cv2.circle(image, (center_x, center_y), 5, (0, 0, 255), -1)
+
+    def draw_line_to_middle(self, image, center_x_obj, center_y_obj):
+        """
+        Draw a line from the detected object's center to the red dot in the middle of the camera's field of view.
+        """
+        height, width, _ = image.shape
+        # Calculate the coordinates of the middle point
+        center_x_middle = width // 2
+        center_y_middle = height // 2
+        # Draw a line from the object's center to the middle point
+        cv2.line(image, (int(center_x_obj), int(center_y_obj)), (center_x_middle, center_y_middle), (255, 0, 0), 2)
+
+    def get_detection_position(self, box, frame_width, frame_height, distance, fov):
+        """
+        Get the position of the detection relative to the center of the frame.
+        Returns the (x, y) offset from the center of the frame in cm.
+        """
+        x1, y1, x2, y2 = box.astype(int)
+        center_x = (x1 + x2) / 2
+        center_y = (y1 + y2) / 2
+        offset_x = center_x - frame_width / 2
+        offset_y = center_y - frame_height / 2
+
+        # Convert offset from pixels to cm
+        # This assumes the camera's field of view is the same in the x and y directions
+        sensor_width = 2 * distance * math.tan(math.radians(fov / 2))
+        pixel_size = sensor_width / frame_width
+        offset_x_cm = offset_x * pixel_size
+        offset_y_cm = offset_y * pixel_size
+
+        return offset_x_cm, offset_y_cm
+
+
     def draw_grid(self, image, num_rows, num_cols, color, thickness):
         """
         Draw a grid overlay on the image.
@@ -89,21 +132,16 @@ class LiveObjectDetectionNode(Node):
             num_rows = 3
             num_cols = 3
 
-            print("Waiting for frames...")
             frames = self.pipeline.wait_for_frames()
             color_frame = frames.get_color_frame()
             depth_frame = frames.get_depth_frame()
             if not color_frame or not depth_frame:
-                print("No frames received")
                 continue
-            print("Frames received")
 
             color_image = np.asanyarray(color_frame.get_data())
             depth_image = np.asanyarray(depth_frame.get_data())
 
-            print("Performing object detection...")
             data = self.model(color_image)
-            print("Object detection complete")
             detections = sv.Detections.from_ultralytics(data[0])
 
             annotated_image = color_image.copy()
@@ -116,49 +154,60 @@ class LiveObjectDetectionNode(Node):
 
             for det in detections:
                 label = f"{self.model.model.names[det[3]]} {det[2]:.2f}"  # Accessing class index and confidence from tuple
+                print("Detected:", label)  # Print detected object names and confidence scores for debugging
                 box = det[0]
                 # Get center pixel of the detection box
                 center_x = int((box[0] + box[2]) / 2)
                 center_y = int((box[1] + box[3]) / 2)
                 # Get depth value at the center pixel
                 depth_value = depth_image[center_y, center_x]
+                distance = depth_value
                 # Convert depth value to meters using depth scale
                 depth = depth_value * depth_scale
                 label += f" Depth: {depth:.2f} meters"
+
+                print(f"Distance to {self.model.model.names[det[3]]}: {depth:.2f} meters")
+                cv2.circle(annotated_image, (center_x, center_y), 5, (0, 255, 255), -1)
+                
+                # Get position of the detection
+                offset_x, offset_y = self.get_detection_position(box, color_image.shape[1], color_image.shape[0], distance, fov)
+                print(f"{self.model.model.names[det[3]]} Detection Position (Offset):", offset_x, offset_y)
 
                 # Draw bounding box on the image
                 x1, y1, x2, y2 = box.astype(int)
                 cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-
+                self.draw_red_dot(annotated_image)
                 # Store center positions and depths of red and blue balls
-                if self.model.model.names[det[3]] == "red ball":
+                if self.model.model.names[det[3]] == "red":
                     center_x_red = center_x
                     depth_red = depth
-                elif self.model.model.names[det[3]] == "blue ball":
+                elif self.model.model.names[det[3]] == "blue":
                     center_x_blue = center_x
                     depth_blue = depth
 
             if center_x_red is not None and center_x_blue is not None:
-                # Calculate the angle to rotate the camera based on the depths of the balls
+                print("Inside angle calculation block")
                 angle = self.calculate_angle(center_x_red, center_x_blue, color_image.shape[1], fov)
                 print(f"Rotate camera by {math.degrees(angle):.2f} degrees")
+                movement = self.determine_movement((center_x_red + center_x_blue) / 2, color_image.shape[1])
+                print(f"Move camera {movement}")
 
             if center_x_red is not None:
-                # Calculate the angle to adjust the camera to the middle position
+                print("Inside middle angle calculation block")
                 middle_angle = self.calculate_middle_angle(center_x_red, color_image.shape[1])
                 print(f"Adjust camera to middle by {math.degrees(middle_angle):.2f} degrees")
+
+            if center_x_red is not None:
+                self.draw_line_to_middle(annotated_image, center_x_red, center_y)
+            if center_x_blue is not None:
+                self.draw_line_to_middle(annotated_image, center_x_blue, center_y)
 
             # Draw grid overlay
             self.draw_grid(annotated_image, num_rows, num_cols, grid_color, grid_thickness)
 
             # Display the live camera feed with object detection annotations
             cv2.imshow("Live Object Detection", annotated_image)
-
-            # Exit the loop if the 'q' key is pressed
-            key = cv2.waitKey(1)
-            if key & 0xFF == ord('q'):
-                break
 
         # Release the camera and close the OpenCV window
         self.pipeline.stop()
