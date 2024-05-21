@@ -23,10 +23,7 @@ setup(
             'my_node = my_package.my_node:main',
             'live_detection_node = my_package.live_detection_node:main',
             'main = my_package.main:main',
-            'utils = my_package.utils:main',
-            'camera_frame_publisher = my_package.camera_frame_publisher:main',
-            'object_detection_subscriber = my_package.object_detection_subscriber:main'
-
+            'reinforcement_r2 = my_package.reinforcement_r2:main'\
         ],
     },
 )

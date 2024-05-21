@@ -1,0 +1,60 @@
+[7.436s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed
+[7.712s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:472: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[7.712s] !!
+[7.712s] 
+[7.712s]         ********************************************************************************
+[7.713s]         Usage of dash-separated 'build-base' will not be supported in future
+[7.713s]         versions. Please use the underscore name 'build_base' instead.
+[7.713s] 
+[7.713s]         By 2024-Sep-26, you need to update your project and remove deprecated calls
+[7.713s]         or your builds will no longer be supported.
+[7.713s] 
+[7.713s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[7.713s]         ********************************************************************************
+[7.714s] 
+[7.714s] !!
+[7.714s]   opt = self.warn_dash_deprecation(opt, section)
+[7.968s] running egg_info
+[8.007s] writing ../../build/my_package/my_package.egg-info/PKG-INFO
+[8.008s] writing dependency_links to ../../build/my_package/my_package.egg-info/dependency_links.txt
+[8.009s] writing entry points to ../../build/my_package/my_package.egg-info/entry_points.txt
+[8.009s] writing requirements to ../../build/my_package/my_package.egg-info/requires.txt
+[8.010s] writing top-level names to ../../build/my_package/my_package.egg-info/top_level.txt
+[8.310s] reading manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.312s] writing manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.312s] running build
+[8.313s] running build_py
+[8.313s] copying my_package/reinforcement_r2.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.313s] copying my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.314s] copying my_package/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.314s] copying my_package/main.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.315s] running install
+[8.315s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[8.315s] !!
+[8.316s] 
+[8.316s]         ********************************************************************************
+[8.316s]         Please avoid running ``setup.py`` directly.
+[8.316s]         Instead, use pypa/build, pypa/installer or other
+[8.316s]         standards-based tools.
+[8.316s] 
+[8.316s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[8.317s]         ********************************************************************************
+[8.317s] 
+[8.317s] !!
+[8.317s]   self.initialize_options()
+[8.327s] running install_lib
+[8.368s] copying /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package/reinforcement_r2.py -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package
+[8.370s] byte-compiling /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/reinforcement_r2.py to reinforcement_r2.cpython-38.pyc
+[8.374s] running install_data
+[8.415s] copying resource/my_package -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/ament_index/resource_index/packages
+[8.415s] copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package
+[8.415s] running install_egg_info
+[8.457s] removing '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info' (and everything under it)
+[8.458s] Copying ../../build/my_package/my_package.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info
+[8.460s] running install_scripts
+[8.576s] Installing live_detection_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.577s] Installing main script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.577s] Installing my_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.577s] Installing reinforcement_r2 script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[8.578s] writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log'
+[8.654s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package' returned '0': PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed

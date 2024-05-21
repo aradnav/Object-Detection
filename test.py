@@ -1,150 +1,190 @@
-import cv2
+import gym
+from gym import spaces
 import numpy as np
-import supervision as sv
-from ultralytics import YOLO
+import torch
+import random
+from torchvision.transforms import transforms
 import pyrealsense2 as rs
-import math
+import cv2
+from ultralytics import YOLO
+from torch.utils.tensorboard import SummaryWriter
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv
 
-def determine_movement(center_x, frame_width):
-    """
-    Determine the direction in which the camera needs to move.
-    """
-    if center_x < frame_width // 3:
-        return "left"
-    elif center_x > 2 * frame_width // 3:
-        return "right"
-    else:
-        return "center"
+class ObjectDetectionEnv(gym.Env):
+    def __init__(self, model):
+        super(ObjectDetectionEnv, self).__init__()
+        self.silo_states = np.zeros(5)  # Stores the number of balls in each silo
+        self.ball_color = None  # Color of the ball (1 for red, -1 for blue)
+        self.team_color = None  # Current team color (1 for red, -1 for blue)
+        self.game_over = False
+        self.model = model  # Your PyTorch object detection model
+        self.transform = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize((640, 480)),  # Resize to a size divisible by 32
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalize to [0, 1]
+        ])
+        self.action_space = spaces.Discrete(5)  # Number of silos
+        self.observation_space = spaces.Dict({
+            "silo_states": spaces.Box(low=0, high=3, shape=(5,), dtype=np.float32),
+            "ball_color": spaces.Discrete(2),  # Red or blue
+            "team_color": spaces.Discrete(2)   # Red or blue
+        })
 
-def calculate_angle(center_x1, center_x2, frame_width, fov):
-    """
-    Calculate the angle by which the camera needs to rotate.
-    """
-    # Calculate the distance from the center of the frame to the center of each ball
-    distance1 = abs(center_x1 - frame_width / 2)
-    distance2 = abs(center_x2 - frame_width / 2)
+    def reset(self):
+        # Reset environment to initial state
+        self.silo_states = np.zeros(5)
+        self.ball_color = None
+        self.team_color = np.random.choice([0, 1])  # Randomly assign team color (0 for red, 1 for blue)
+        self.game_over = False
+        return self._get_observation()
 
-    # Calculate the angle based on the distances and field of view (fov)
-    angle = math.atan(distance2 / (frame_width / 2) * math.tan(fov / 2)) - math.atan(distance1 / (frame_width / 2) * math.tan(fov / 2))
-    return angle
+    def perform_object_detection(self):
+        detections = []  # List to store detections
+        # Configure depth and color streams
+        pipeline = rs.pipeline()
+        config = rs.config()
+        config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
 
-def calculate_middle_angle(center_x, frame_width):
-    """
-    Calculate the angle to adjust the camera to the middle position.
-    """
-    distance = center_x - frame_width / 2
-    angle = math.atan(distance / (frame_width / 2))
-    return angle
+        # Start streaming
+        pipeline.start(config)
 
-def draw_grid(image, num_rows, num_cols, color, thickness):
-    """
-    Draw a grid overlay on the image.
-    """
-    height, width = image.shape[:2]
-    cell_width = width // num_cols
-    cell_height = height // num_rows
+        try:
+            while True:
+                # Wait for a coherent pair of frames: depth and color
+                frames = pipeline.wait_for_frames()
+                color_frame = frames.get_color_frame()
+                if not color_frame:
+                    continue
 
-    # Draw horizontal lines
-    for i in range(1, num_rows):
-        cv2.line(image, (0, i * cell_height), (width, i * cell_height), color, thickness)
+                # Convert color frame to numpy array
+                frame = np.asanyarray(color_frame.get_data())
 
-    # Draw vertical lines
-    for i in range(1, num_cols):
-        cv2.line(image, (i * cell_width, 0), (i * cell_width, height), color, thickness)
+                # Perform object detection using the model
+                with torch.no_grad():
+                    detections = self.model(frame)
 
-def live_object_detection():
-    '''main Function'''
-    # Initialize the RealSense D455 camera
-    pipeline = rs.pipeline()
-    config = rs.config()
-    config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-    config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-    profile = pipeline.start(config)
+                # Append detections to the list
+                detections.append(detections)
 
-    model = YOLO("/home/cadt-02/Object-Detection/ros2_ws/model_- 31 january 2024 11_41.pt")
+                # Process detections
+                for detection in detections:
+                    label, confidence, bbox = 0, 0, [0]*29
+                    if len(detection) >= 31:
+                        label = int(detection[30])  # Assuming detection format: [x_min, y_min, x_max, y_max, confidence, class_label]
+                        confidence = detection[29]
+                        bbox = detection[:29]
 
-    # Get depth scale
-    depth_sensor = profile.get_device().first_depth_sensor()
-    depth_scale = depth_sensor.get_depth_scale()
+                    # Render bounding box and label on the frame
+                    if confidence > 0.5:
+                        cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), (0, 255, 0), 2)
+                        cv2.putText(frame, str(label), (int(bbox[0]), int(bbox[1]) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
 
-    # Define camera parameters
-    fov = math.radians(69.4)  # Horizontal field of view in radians
+                # Display the frame
+                cv2.imshow('Object Detection', frame)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
 
-    # Define grid parameters
-    grid_color = (255, 255, 255)
-    grid_thickness = 1
-    num_rows = 3
-    num_cols = 3
+        finally:
+            # Stop streaming
+            pipeline.stop()
+            cv2.destroyAllWindows()
+        return detections
 
-    while True:
-        frames = pipeline.wait_for_frames()
-        color_frame = frames.get_color_frame()
-        depth_frame = frames.get_depth_frame()
-        if not color_frame or not depth_frame:
-            continue
+    def step(self, action):
+        # Execute action and return new state, reward, and done flag
+        if self.game_over:
+            raise ValueError("Episode is already done. Please reset the environment.")
 
-        color_image = np.asanyarray(color_frame.get_data())
-        depth_image = np.asanyarray(depth_frame.get_data())
+        # Perform action (place ball in silo)
+        self.silo_states[action] += 1
 
-        data = model(color_image)
-        detections = sv.Detections.from_ultralytics(data[0])
+        # Perform live object detection
+        detections = self.perform_object_detection()
 
-        annotated_image = color_image.copy()
+        # Update state with information about detected objects
+        self.update_state_with_detections(detections)
 
-        # Initialize variables to store the center positions and depths of the detected balls
-        center_x_red = None
-        center_x_blue = None
-        depth_red = None
-        depth_blue = None
+        # Check if any silo is full
+        if np.any(self.silo_states >= 3):
+            # Check for winning condition
+            if np.sum(self.silo_states[self.silo_states >= 3]) >= 3:
+                # Team wins if at least 3 silos are filled
+                reward = 100  # High reward for winning
+                self.game_over = True
+            else:
+                # Count balls in filled silos as points
+                reward = np.sum(self.silo_states[self.silo_states >= 3]) * 30
+                self.game_over = True
+        else:
+            reward = 0  # No reward if the game is still ongoing
 
-        for det in detections:
-            label = f"{model.model.names[det[3]]} {det[2]:.2f}"  # Accessing class index and confidence from tuple
-            box = det[0]
-            # Get center pixel of the detection box
-            center_x = int((box[0] + box[2]) / 2)
-            center_y = int((box[1] + box[3]) / 2)
-            # Get depth value at the center pixel
-            depth_value = depth_image[center_y, center_x]
-            # Convert depth value to meters using depth scale
-            depth = depth_value * depth_scale
-            label += f" Depth: {depth:.2f} meters"
+        # Return observation, reward, done flag, and additional information
+        return self._get_observation(), reward, self.game_over, {}
+    
+    def update_state_with_detections(self, detections):
+        # Process detections
+        for detection in detections:
+            label, confidence, bbox = 0, 0, [0]*29
+            if len(detection) >= 31:
+                label = int(detection[30])  # Assuming detection format: [x_min, y_min, x_max, y_max, confidence, class_label]
+                confidence = detection[29]
+                bbox = detection[:29]
 
-            # Draw bounding box on the image
-            x1, y1, x2, y2 = box.astype(int)
-            cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            if label == "red ball" and confidence > 0.5:
+                self.ball_color = 0
+            elif label == "blue ball" and confidence > 0.5:
+                self.ball_color = 1
+            elif label == "NULL" and confidence > 0.5:
+                # Check if ball is in a silo
+                for i, silo_bbox in enumerate(self.get_silo_bboxes()):
+                    if self.check_overlap(bbox, silo_bbox):
+                        self.silo_states[i] -= 1
+                        break
 
-            # Store center positions and depths of red and blue balls
-            if model.model.names[det[3]] == "red ball":
-                center_x_red = center_x
-                depth_red = depth
-            elif model.model.names[det[3]] == "blue ball":
-                center_x_blue = center_x
-                depth_blue = depth
+    def _get_observation(self):
+        # Return current observation (state of the game)
+        return {
+            "silo_states": self.silo_states.copy(),
+            "ball_color": self.ball_color if self.ball_color is not None else -1,  # Use -1 as default value if ball_color is None
+            "team_color": self.team_color if self.team_color is not None else -1  # Use -1 as default value if team_color is None
+        }
 
-        if center_x_red is not None and center_x_blue is not None:
-            # Calculate the angle to rotate the camera based on the depths of the balls
-            angle = calculate_angle(center_x_red, center_x_blue, color_image.shape[1], fov)
-            print(f"Rotate camera by {math.degrees(angle):.2f} degrees")
+    def render(self, mode='human'):
+        # Rendering code using OpenCV
+        frame = np.zeros((480, 640, 3), dtype=np.uint8)  # Create a blank frame
+        # Add visualization of silo states, ball color, team color, etc.
+        cv2.putText(frame, f"Silo states: {self.silo_states}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        cv2.putText(frame, f"Ball color: {'Red' if self.ball_color == 0 else 'Blue' if self.ball_color == 1 else 'Unknown'}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        cv2.putText(frame, f"Team color: {'Red' if self.team_color == 0 else 'Blue' if self.team_color == 1 else 'Unknown'}", (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        
+        # Display the frame
+        cv2.imshow('Environment', frame)
+        cv2.waitKey(1)  # Add a slight delay to display the frame (1ms)
 
-        if center_x_red is not None:
-            # Calculate the angle to adjust the camera to the middle position
-            middle_angle = calculate_middle_angle(center_x_red, color_image.shape[1])
-            print(f"Adjust camera to middle by {math.degrees(middle_angle):.2f} degrees")
+        # You can also save the frame as an image or write to a video file if needed
+        # cv2.imwrite('environment_frame.png', frame)
+        # out.write(frame)  # Assuming 'out' is a video writer object
 
-        # Draw grid overlay
-        draw_grid(annotated_image, num_rows, num_cols, grid_color, grid_thickness)
+        # Optionally return the rendered frame or other visualization data
+        return frame
 
-        # Display the live camera feed with object detection annotations
-        cv2.imshow("Live Object Detection", annotated_image)
 
-        # Exit the loop if the 'q' key is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+def main():
+    # Define your PyTorch object detection model
+    model = YOLO("/home/cadt-02/Downloads/model_- 6 may 2024 19_25.pt")
 
-    # Release the camera and close the OpenCV window
-    pipeline.stop()
-    cv2.destroyAllWindows()
+    env = ObjectDetectionEnv(model)
+    # Wrap the environment in a DummyVecEnv to make it compatible with stable-baselines3
+    env = DummyVecEnv([lambda: env])
 
-# Run the live object detection function
-live_object_detection()
+    # Create the RL agent using PPO algorithm
+    model = PPO("MultiInputPolicy", env, verbose=1, tensorboard_log="./ppo_logs/")
+
+    # Train the agent
+    model.learn(total_timesteps=int(1e5))
+
+if __name__ == "__main__":
+    main()

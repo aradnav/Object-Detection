@@ -1,148 +1,202 @@
-import cv2
+import gym
+from gym import spaces
 import numpy as np
+import torch
+import random
+from torchvision.transforms import transforms
 import pyrealsense2 as rs
-import tensorrt as trt
-import pycuda.driver as cuda
-import pycuda.autoinit
+import cv2
+from ultralytics import YOLO
+from stable_baselines3 import DQN
+from stable_baselines3.common.vec_env import DummyVecEnv
 
-def interpret_output(output):
-    # Adjust these values to match your model's output format
-    grid_size = 13
-    num_anchors = 5
-    num_classes = 20
+class ObjectDetectionEnv(gym.Env):
+    def __init__(self, model_path):
+        super(ObjectDetectionEnv, self).__init__()
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = YOLO(model_path)
+        self.silo_states = np.zeros(5)  # Stores the number of balls in each silo
+        self.ball_color = None  # Color of the ball (0 for red, 1 for blue)
+        self.team_color = None  # Current team color (0 for red, 1 for blue)
+        self.game_over = False
 
-    # Reshape the output tensor
-    output = output.reshape((grid_size, grid_size, num_anchors, 5 + num_classes))
+        self.transform = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize((640, 480)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalize to [0, 1]
+        ])
 
-    # Extract the bounding box coordinates and dimensions
-    box_xy = output[..., :2]
-    box_wh = output[..., 2:4]
+        self.action_space = spaces.Discrete(5)  # Number of silos
+        self.observation_space = spaces.Dict({
+            "silo_states": spaces.Box(low=0, high=3, shape=(5,), dtype=np.float32),
+            "ball_color": spaces.Discrete(2),  # Red or blue
+            "team_color": spaces.Discrete(2)   # Red or blue
+        })
 
-    # Compute the box corners (used to draw the bounding box)
-    box_mins = box_xy - box_wh / 2
-    box_maxes = box_xy + box_wh / 2
+        # Initialize RealSense pipeline
+        self.pipeline = rs.pipeline()
+        self.config = rs.config()
+        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+        self.pipeline.start(self.config)
 
-    # Extract the object confidence
-    object_confidence = output[..., 4:5]
+    def reset(self):
+        # Reset environment to initial state
+        self.silo_states = np.zeros(5)
+        self.ball_color = np.random.choice([0, 1])  # Randomly assign ball color (0 for red, 1 for blue)
+        self.team_color = np.random.choice([0, 1])  # Randomly assign team color (0 for red, 1 for blue)
+        self.game_over = False
+        return self._get_observation()
 
-    # Extract the class probabilities
-    class_probs = output[..., 5:]
+    def step(self, action):
+        # Execute action and return new state, reward, and done flag
+        if self.game_over:
+            raise ValueError("Episode is already done. Please reset the environment.")
 
-    # Compute the class scores
-    class_scores = object_confidence * class_probs
+        # Perform action (place ball in silo)
+        self.silo_states[action] += 1
 
-    # Find the class with the highest score
-    classes = np.argmax(class_scores, axis=-1)
-    scores = np.max(class_scores, axis=-1)
+        # Perform live object detection
+        detections = self.perform_object_detection()
 
-    # Create a list of detections
-    detections = []
-    for i in range(grid_size):
-        for j in range(grid_size):
-            for k in range(num_anchors):
-                if scores[i, j, k] > 0.5:  # adjust this to your desired confidence threshold
-                    x, y, w, h = box_mins[i, j, k, 0], box_mins[i, j, k, 1], box_maxes[i, j, k, 0], box_maxes[i, j, k, 1]
-                    detections.append([classes[i, j, k], scores[i, j, k], x, y, w, h])
+        # Update state with information about detected objects
+        self.update_state_with_detections(detections)
 
-    return detections
-def interpret_output(output):
-    # Print the shape of the output
-    print("Output shape:", output.shape)
+        # Check if any silo is full
+        if np.any(self.silo_states >= 3):
+            # Check for winning condition
+            if np.sum(self.silo_states[self.silo_states >= 3]) >= 3:
+                # Team wins if at least 3 silos are filled
+                reward = 100  # High reward for winning
+                self.game_over = True
+            else:
+                # Count balls in filled silos as points
+                reward = np.sum(self.silo_states[self.silo_states >= 3]) * 30
+                self.game_over = True
+        else:
+            reward = 0  # No reward if the game is still ongoing
 
-    # Adjust these values to match your model's output format
-    grid_size = 13
-    num_anchors = 5
-    num_classes = 20
+        return self._get_observation(), reward, self.game_over, {}
 
-    # Calculate the total size of the expected shape
-    expected_size = grid_size * grid_size * num_anchors * (5 + num_classes)
-
-    # Check if the output size matches the expected size
-    if output.size != expected_size:
-        print(f"Warning: output size ({output.size}) does not match expected size ({expected_size}).")
-        return []
-
-    # Reshape the output tensor
-    output = output.reshape((grid_size, grid_size, num_anchors, 5 + num_classes))
-
-# Initialize RealSense
-pipeline = rs.pipeline()
-config = rs.config()
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-pipeline.start(config)
-
-# Load TensorRT model
-TRT_MODEL_PATH = "model.trt"
-runtime = trt.Runtime(trt.Logger(trt.Logger.INFO))
-
-with open(TRT_MODEL_PATH, "rb") as f:
-    engine_data = f.read()
-engine = runtime.deserialize_cuda_engine(engine_data)
-context = engine.create_execution_context()
-
-# Allocate buffers
-input_name = engine.get_binding_name(0)
-output_name = engine.get_binding_name(1)
-input_shape = engine.get_binding_shape(input_name)
-output_shape = engine.get_binding_shape(output_name)
-d_input = cuda.mem_alloc(trt.volume(input_shape) * np.dtype(np.float32).itemsize)
-d_output = cuda.mem_alloc(trt.volume(output_shape) * np.dtype(np.float32).itemsize)
-bindings = [int(d_input), int(d_output)] 
-context.set_binding_shape(0, input_shape)
-context.set_binding_shape(1, output_shape)
-context.execute_v2(bindings=bindings)
-
-try:
-    while True:
-        # Get a new frame
-        frames = pipeline.wait_for_frames()
+    def perform_object_detection(self):
+        frames = self.pipeline.wait_for_frames()
         color_frame = frames.get_color_frame()
-        if not color_frame:
-            continue
-        frame = np.asanyarray(color_frame.get_data())
+        depth_frame = frames.get_depth_frame()
+        if not color_frame or not depth_frame:
+            return []
 
-        # Create a separate variable for the image to display
-        display_image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        color_image = np.asanyarray(color_frame.get_data())
 
-        # Preprocess the frame
-        frame = cv2.resize(frame, (224, 224))  # adjust this to your model's input size
-        frame = frame.transpose((2, 0, 1))  # adjust this to your model's input format
-        frame = frame.astype(np.float32) / 255.0  # adjust this to your model's input format
+        # Perform object detection using the model
+        results = self.model(color_image)
 
-        # Ensure the frame data is contiguous in memory before copying it to the GPU
-        frame = np.ascontiguousarray(frame)
+        # Process detections and extract relevant information
+        detections_list = []
+        for result in results:
+            for det in result.boxes:  # Assuming 'boxes' is the attribute containing detection boxes
+                bbox = det.xyxy[0].cpu().numpy().astype(int)  # Get bounding box coordinates
+                confidence = det.conf[0].item()  # Get confidence
+                label = det.cls[0].item()  # Get class label
+                center_x = int((bbox[0] + bbox[2]) / 2)
+                center_y = int((bbox[1] + bbox[3]) / 2)
+                depth_value = depth_frame.get_distance(center_x, center_y)
 
-        # Calculate the size of the input and output in bytes
-        input_size = trt.volume(input_shape) * np.dtype(np.float32).itemsize
-        output_size = trt.volume(output_shape) * np.dtype(np.float32).itemsize
+                detections_list.append({
+                    "label": label,
+                    "confidence": confidence,
+                    "bbox": bbox,
+                    "depth": depth_value
+                })
 
-        # Allocate buffers
-        d_input = cuda.mem_alloc(input_size)
-        d_output = cuda.mem_alloc(output_size)
+        return detections_list
 
-        # Print debugging information
-        print("Frame size:", frame.size)
-        print("GPU input memory size:", input_size)
-        print("GPU output memory size:", output_size)
-        print("Frame is contiguous:", frame.flags['C_CONTIGUOUS'])
-        print("Current CUDA context:", cuda.Context.get_current())
+    def update_state_with_detections(self, detections):
+        for detection in detections:
+            label = detection["label"]
+            confidence = detection["confidence"]
 
-        # Run the frame through the model
-        cuda.memcpy_htod(d_input, frame.ravel())
-        context.execute(batch_size=1, bindings=bindings)
-        output = np.empty(output_shape, dtype=np.float32)  # Replace output_size with output_shape
-        cuda.memcpy_dtoh(output, d_output)
-        # Interpret the output
-        detections = interpret_output(output)
+            if label == 0 and confidence > 0.5:  # Assuming 0 is the label for red ball
+                self.ball_color = 0
+            elif label == 1 and confidence > 0.5:  # Assuming 1 is the label for blue ball
+                self.ball_color = 1
+            elif label == 2 and confidence > 0.5:  # Assuming 2 is the label for "NULL"
+                # Check if ball is in a silo
+                for i, silo_bbox in enumerate(self.get_silo_bboxes()):
+                    if self.check_overlap(detection["bbox"], silo_bbox):
+                        self.silo_states[i] -= 1
+                        break
 
-        # Display the results
-        print("Detections:", detections)
-        cv2.imshow('RealSense', display_image)
-        cv2.waitKey(1)
+    def _get_observation(self):
+        # Return current observation (state of the game)
+        return {
+            "silo_states": self.silo_states.copy(),
+            "ball_color": self.ball_color,
+            "team_color": self.team_color
+        }
 
-finally:
-    # Stop streaming
-    pipeline.stop()
+    def render(self, mode='human'):
+        if mode == 'human':
+            while True:
+                frames = self.pipeline.wait_for_frames()
+                color_frame = frames.get_color_frame()
+                if not color_frame:
+                    continue
 
-    # Free the GPU memory
-    del d_input, d_output  # Replace cuda.mem_free with del
+                frame = np.asanyarray(color_frame.get_data())
+
+                with torch.no_grad():
+                    results = self.model(frame)
+
+                for result in results:
+                    for det in result.boxes:
+                        bbox = det.xyxy[0].cpu().numpy().astype(int)
+                        label = int(det.cls[0].item())
+                        confidence = det.conf[0].item()
+
+                        if confidence > 0.5:
+                            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
+                            cv2.putText(frame, str(label), (bbox[0], bbox[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+
+                cv2.imshow('Object Detection', frame)
+                key = cv2.waitKey(1)
+                if key & 0xFF == ord('q'):
+                    break
+
+            cv2.destroyAllWindows()
+
+        elif mode == 'rgb_array':
+            # Return the current frame as an RGB array (optional)
+            # You may implement this if you want to render the environment in a custom way
+            pass
+
+
+    def get_silo_bboxes(self):
+        # Placeholder function to return bounding boxes for silos
+        return [np.array([i*100, 0, (i+1)*100, 480]) for i in range(5)]
+
+    def check_overlap(self, bbox1, bbox2):
+        x1_max = max(bbox1[0], bbox2[0])
+        y1_max = max(bbox1[1], bbox2[1])
+        x2_min = min(bbox1[2], bbox2[2])
+        y2_min = min(bbox1[3], bbox2[3])
+        return x1_max < x2_min and y1_max < y2_min
+
+def main():
+    model_path = "/home/cadt-02/Downloads/model_- 6 may 2024 19_25.pt"
+    env = ObjectDetectionEnv(model_path)
+
+    # Wrap the environment in a DummyVecEnv to make it compatible with stable-baselines3
+    env = DummyVecEnv([lambda: env])
+
+    # Print observation returned by reset method
+    print("Observation at reset:", env.reset())
+
+    # Create the RL agent using DQN algorithm with MultiInputPolicy
+    model = DQN("MultiInputPolicy", env, verbose=1, tensorboard_log="./dqn_logs/")
+
+    # Train the agent
+    model.learn(total_timesteps=int(1e5))
+
+if __name__ == "__main__":
+    main()

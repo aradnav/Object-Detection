@@ -25,6 +25,15 @@ class LiveObjectDetectionNode(Node):
         self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
         self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
         self.profile = self.pipeline.start(self.config)
+        self.prev_depth_frame = None  
+        # Get the depth camera's intrinsics
+        depth_intrinsics = self.profile.get_stream(rs.stream.depth).as_video_stream_profile().get_intrinsics()
+    
+    def capture_depth_frame(self):
+        # Wait for a coherent pair of frames: depth and color
+        frames = self.pipeline.wait_for_frames()
+        depth_frame = frames.get_depth_frame()
+        return depth_frame
 
     def determine_movement(self, center_x, frame_width):
         """
@@ -79,26 +88,12 @@ class LiveObjectDetectionNode(Node):
         # Draw a line from the object's center to the middle point
         cv2.line(image, (int(center_x_obj), int(center_y_obj)), (center_x_middle, center_y_middle), (255, 0, 0), 2)
 
-    def get_detection_position(self, box, frame_width, frame_height, distance, fov):
-        """
-        Get the position of the detection relative to the center of the frame.
-        Returns the (x, y) offset from the center of the frame in cm.
-        """
-        x1, y1, x2, y2 = box.astype(int)
-        center_x = (x1 + x2) / 2
-        center_y = (y1 + y2) / 2
-        offset_x = center_x - frame_width / 2
-        offset_y = center_y - frame_height / 2
-
-        # Convert offset from pixels to cm
-        # This assumes the camera's field of view is the same in the x and y directions
-        sensor_width = 2 * distance * math.tan(math.radians(fov / 2))
-        pixel_size = sensor_width / frame_width
-        offset_x_cm = offset_x * pixel_size
-        offset_y_cm = offset_y * pixel_size
-
-        return offset_x_cm, offset_y_cm
-
+    def get_detection_position(self, x, y, depth_value, camera_intrinsics):
+        # Convert pixel coordinates (x, y) to real-world coordinates (X, Y, Z)
+        X = (x - camera_intrinsics[0][2]) * depth_value / camera_intrinsics[0][0]
+        Y = (y - camera_intrinsics[1][2]) * depth_value / camera_intrinsics[1][1]
+        Z = depth_value
+        return X, Y, Z
 
     def draw_grid(self, image, num_rows, num_cols, color, thickness):
         """
@@ -124,7 +119,7 @@ class LiveObjectDetectionNode(Node):
             depth_scale = depth_sensor.get_depth_scale()
 
             # Define camera parameters
-            fov = math.radians(69.4)  # Horizontal field of view in radians
+            fov = math.radians(86)  # Horizontal field of view in radians
 
             # Define grid parameters
             grid_color = (255, 255, 255)
@@ -152,6 +147,7 @@ class LiveObjectDetectionNode(Node):
             depth_red = None
             depth_blue = None
 
+            # Loop through the detections to get the coordinates of the detected objects
             for det in detections:
                 label = f"{self.model.model.names[det[3]]} {det[2]:.2f}"  # Accessing class index and confidence from tuple
                 print("Detected:", label)  # Print detected object names and confidence scores for debugging
@@ -168,23 +164,50 @@ class LiveObjectDetectionNode(Node):
 
                 print(f"Distance to {self.model.model.names[det[3]]}: {depth:.2f} meters")
                 cv2.circle(annotated_image, (center_x, center_y), 5, (0, 255, 255), -1)
-                
-                # Get position of the detection
-                offset_x, offset_y = self.get_detection_position(box, color_image.shape[1], color_image.shape[0], distance, fov)
-                print(f"{self.model.model.names[det[3]]} Detection Position (Offset):", offset_x, offset_y)
 
-                # Draw bounding box on the image
-                x1, y1, x2, y2 = box.astype(int)
-                cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-                self.draw_red_dot(annotated_image)
-                # Store center positions and depths of red and blue balls
-                if self.model.model.names[det[3]] == "red":
-                    center_x_red = center_x
-                    depth_red = depth
-                elif self.model.model.names[det[3]] == "blue":
-                    center_x_blue = center_x
-                    depth_blue = depth
+                if self.prev_depth_frame is not None:
+                    prev_depth_data = np.asanyarray(self.prev_depth_frame.get_data())
+
+                    # Calculate optical flow between the current and previous depth frames
+                    optical_flow = cv2.calcOpticalFlowFarneback(prev_depth_data, depth_image, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+
+                    # Get the depth camera's intrinsics
+                    depth_intrinsics = self.profile.get_stream(rs.stream.depth).as_video_stream_profile().get_intrinsics()
+
+                    fx = depth_intrinsics.fx
+                    fy = depth_intrinsics.fy
+                    cx = depth_intrinsics.ppx
+                    cy = depth_intrinsics.ppy
+                    # Initialize RealSense camera and obtain intrinsic parameters
+                    camera_intrinsics = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])  # Example intrinsic parameters
+
+                    # Estimate ball position (x, y, z) in 3D space
+                    ball_x_3d, ball_y_3d, ball_z_3d = self.get_detection_position(center_x, center_y, depth_value, camera_intrinsics)
+
+                    # Display ball position
+                    print("Ball Position (x, y, z):", ball_x_3d, ball_y_3d, ball_z_3d)
+
+                    # Extract optical flow at ball position
+                    flow_at_ball = optical_flow[center_y, center_x]
+
+                    # Estimate angular velocity (omega)
+                    omega = np.arctan2(flow_at_ball[1], flow_at_ball[0])
+
+                    # Display estimated orientation
+                    print("Estimated Orientation (omega):", omega)
+
+                    # Draw bounding box on the image
+                    x1, y1, x2, y2 = box.astype(int)
+                    cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    self.draw_red_dot(annotated_image)
+                    # Store center positions and depths of red and blue balls
+                    if self.model.model.names[det[3]] == "red":
+                        center_x_red = center_x
+                        depth_red = depth
+                    elif self.model.model.names[det[3]] == "blue":
+                        center_x_blue = center_x
+                        depth_blue = depth
 
             if center_x_red is not None and center_x_blue is not None:
                 print("Inside angle calculation block")
@@ -209,6 +232,13 @@ class LiveObjectDetectionNode(Node):
             # Display the live camera feed with object detection annotations
             cv2.imshow("Live Object Detection", annotated_image)
 
+            # Exit the loop if the 'q' key is pressed
+            key = cv2.waitKey(1)
+            if key & 0xFF == ord('q'):
+                break
+
+            # Update prev_depth_frame for the next iteration
+            self.prev_depth_frame = depth_frame
         # Release the camera and close the OpenCV window
         self.pipeline.stop()
         cv2.destroyAllWindows()
