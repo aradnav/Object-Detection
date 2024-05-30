@@ -1,0 +1,1 @@
+cmd='/home/cadt-02/.local/lib/python3.8/site-packages/cmake/data/bin/cmake;-GUnix Makefiles;-C<TMP_DIR>/spdlog-cache-$<CONFIG>.cmake;-S;<SOURCE_DIR><SOURCE_SUBDIR>;-B;<BINARY_DIR>'

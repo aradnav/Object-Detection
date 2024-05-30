@@ -1,0 +1,283 @@
+[0.000000] (-) TimerEvent: {}
+[0.000569] (micro_ros_agent) JobQueued: {'identifier': 'micro_ros_agent', 'dependencies': OrderedDict()}
+[0.001025] (my_package) JobQueued: {'identifier': 'my_package', 'dependencies': OrderedDict()}
+[0.001225] (object_detection) JobQueued: {'identifier': 'object_detection', 'dependencies': OrderedDict()}
+[0.001680] (micro_ros_agent) JobStarted: {'identifier': 'micro_ros_agent'}
+[0.099450] (-) TimerEvent: {}
+[0.200339] (-) TimerEvent: {}
+[0.301205] (-) TimerEvent: {}
+[0.402514] (-) TimerEvent: {}
+[0.505156] (-) TimerEvent: {}
+[0.606639] (-) TimerEvent: {}
+[0.708067] (-) TimerEvent: {}
+[0.809980] (-) TimerEvent: {}
+[0.911627] (-) TimerEvent: {}
+[1.013147] (-) TimerEvent: {}
+[1.115243] (-) TimerEvent: {}
+[1.194315] (my_package) JobStarted: {'identifier': 'my_package'}
+[1.215433] (-) TimerEvent: {}
+[1.316081] (-) TimerEvent: {}
+[1.417541] (-) TimerEvent: {}
+[1.518365] (-) TimerEvent: {}
+[1.619227] (-) TimerEvent: {}
+[1.721242] (-) TimerEvent: {}
+[1.822219] (-) TimerEvent: {}
+[1.924205] (-) TimerEvent: {}
+[2.025501] (-) TimerEvent: {}
+[2.126861] (-) TimerEvent: {}
+[2.228337] (-) TimerEvent: {}
+[2.331023] (-) TimerEvent: {}
+[2.431668] (-) TimerEvent: {}
+[2.533075] (-) TimerEvent: {}
+[2.634070] (-) TimerEvent: {}
+[2.691976] (object_detection) JobStarted: {'identifier': 'object_detection'}
+[2.735840] (-) TimerEvent: {}
+[2.837418] (-) TimerEvent: {}
+[2.939267] (-) TimerEvent: {}
+[3.040297] (-) TimerEvent: {}
+[3.141278] (-) TimerEvent: {}
+[3.242188] (-) TimerEvent: {}
+[3.343394] (-) TimerEvent: {}
+[3.444588] (-) TimerEvent: {}
+[3.547990] (-) TimerEvent: {}
+[3.649156] (-) TimerEvent: {}
+[3.751840] (-) TimerEvent: {}
+[3.852906] (-) TimerEvent: {}
+[3.953660] (-) TimerEvent: {}
+[4.056623] (-) TimerEvent: {}
+[4.158635] (-) TimerEvent: {}
+[4.183932] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'cmake'}
+[4.186075] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'build'}
+[4.187643] (micro_ros_agent) Command: {'cmd': ['/home/cadt-02/.local/bin/cmake', '--build', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', '--', '-j6', '-l6'], 'cwd': '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', 'env': OrderedDict([('NX_ROOT', '/home/cadt-02/.nx'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('PULSE_CLIENTCONFIG', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/client.conf'), ('MAIL', '/var/mail/cadt-02'), ('USER', 'cadt-02'), ('LC_TIME', 'km_KH'), ('XDG_SESSION_TYPE', 'x11'), ('NX_SYSTEM', '/usr/NX'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/cadt-02'), ('OLDPWD', '/home/cadt-02'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('JETSON_L4T', '35.4.1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('JETSON_MODEL', 'NVIDIA Orin Nano Developer Kit'), ('LC_MONETARY', 'km_KH'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:abstract=/tmp/dbus-GO0kj7zqlJ,guid=beac3b9113d7e1d8735cca1d665832c8'), ('COLORTERM', 'truecolor'), ('PULSE_SCRIPT', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/default.pa'), ('COLCON_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'cadt-02'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1423623045966'), ('PULSE_SERVER', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/native.socket'), ('_', '/usr/local/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'P3768'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'cadt-02'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/cadt-02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/cadt02-pc:@/tmp/.ICE-unix/2805,unix/cadt02-pc:/tmp/.ICE-unix/2805'), ('PULSE_RUNTIME_PATH', '/run/user/1000/pulse'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'km_KH'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/233d7537_74ff_47f2_bc14_bb6c39409fb1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('PULSE_CONFIG', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/daemon.conf'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1001'), ('LD_PRELOAD', ''), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'km_KH'), ('NX_TEMP', '/tmp'), ('XMODIFIERS', '@im=ibus'), ('XAUTHORITY', '/home/cadt-02/.Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra23x'), ('GNOME_TERMINAL_SERVICE', ':1.119'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'km_KH'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'km_KH'), ('NX_SESSION_ID', 'AE6386CD0CACE3BFBA5EA867B2662C9E'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'km_KH'), ('QT_IM_MODULE', 'ibus'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent'), ('NX_RUNNER', '/usr/NX/bin/nxrunner'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'km_KH'), ('LC_PAPER', 'km_KH'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('JETSON_JETPACK', '5.1.2'), ('CMAKE_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy'), ('NX_CONNECTION', '172.23.34.123 52323 172.23.34.34 4000'), ('JETSON_P_NUMBER', 'p3767-0003'), ('NXDIR', '/usr/NX')]), 'shell': False}
+[4.258898] (-) TimerEvent: {}
+[4.359700] (-) TimerEvent: {}
+[4.460324] (-) TimerEvent: {}
+[4.560950] (-) TimerEvent: {}
+[4.661603] (-) TimerEvent: {}
+[4.762692] (-) TimerEvent: {}
+[4.865375] (-) TimerEvent: {}
+[4.967016] (-) TimerEvent: {}
+[5.067827] (-) TimerEvent: {}
+[5.169634] (-) TimerEvent: {}
+[5.271406] (-) TimerEvent: {}
+[5.372663] (-) TimerEvent: {}
+[5.474299] (-) TimerEvent: {}
+[5.578840] (-) TimerEvent: {}
+[5.680050] (-) TimerEvent: {}
+[5.781387] (-) TimerEvent: {}
+[5.882807] (-) TimerEvent: {}
+[5.888241] (micro_ros_agent) StdoutLine: {'line': b'[100%] Built target micro_ros_agent\n'}
+[5.890693] (micro_ros_agent) CommandEnded: {'returncode': 0}
+[5.983029] (-) TimerEvent: {}
+[6.083852] (-) TimerEvent: {}
+[6.184487] (-) TimerEvent: {}
+[6.285121] (-) TimerEvent: {}
+[6.385820] (-) TimerEvent: {}
+[6.486822] (-) TimerEvent: {}
+[6.587994] (-) TimerEvent: {}
+[6.690420] (-) TimerEvent: {}
+[6.792979] (-) TimerEvent: {}
+[6.895506] (-) TimerEvent: {}
+[6.996752] (-) TimerEvent: {}
+[7.098017] (-) TimerEvent: {}
+[7.199403] (-) TimerEvent: {}
+[7.300353] (-) TimerEvent: {}
+[7.401522] (-) TimerEvent: {}
+[7.504490] (-) TimerEvent: {}
+[7.593813] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'install'}
+[7.604730] (-) TimerEvent: {}
+[7.666317] (micro_ros_agent) Command: {'cmd': ['/home/cadt-02/.local/bin/cmake', '--install', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent'], 'cwd': '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', 'env': OrderedDict([('NX_ROOT', '/home/cadt-02/.nx'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('PULSE_CLIENTCONFIG', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/client.conf'), ('MAIL', '/var/mail/cadt-02'), ('USER', 'cadt-02'), ('LC_TIME', 'km_KH'), ('XDG_SESSION_TYPE', 'x11'), ('NX_SYSTEM', '/usr/NX'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/cadt-02'), ('OLDPWD', '/home/cadt-02'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('JETSON_L4T', '35.4.1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('JETSON_MODEL', 'NVIDIA Orin Nano Developer Kit'), ('LC_MONETARY', 'km_KH'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:abstract=/tmp/dbus-GO0kj7zqlJ,guid=beac3b9113d7e1d8735cca1d665832c8'), ('COLORTERM', 'truecolor'), ('PULSE_SCRIPT', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/default.pa'), ('COLCON_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'cadt-02'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1423623045966'), ('PULSE_SERVER', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/native.socket'), ('_', '/usr/local/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'P3768'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'cadt-02'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/cadt-02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/cadt02-pc:@/tmp/.ICE-unix/2805,unix/cadt02-pc:/tmp/.ICE-unix/2805'), ('PULSE_RUNTIME_PATH', '/run/user/1000/pulse'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'km_KH'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/233d7537_74ff_47f2_bc14_bb6c39409fb1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('PULSE_CONFIG', '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/daemon.conf'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1001'), ('LD_PRELOAD', ''), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'km_KH'), ('NX_TEMP', '/tmp'), ('XMODIFIERS', '@im=ibus'), ('XAUTHORITY', '/home/cadt-02/.Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra23x'), ('GNOME_TERMINAL_SERVICE', ':1.119'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'km_KH'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'km_KH'), ('NX_SESSION_ID', 'AE6386CD0CACE3BFBA5EA867B2662C9E'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'km_KH'), ('QT_IM_MODULE', 'ibus'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent'), ('NX_RUNNER', '/usr/NX/bin/nxrunner'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'km_KH'), ('LC_PAPER', 'km_KH'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('JETSON_JETPACK', '5.1.2'), ('CMAKE_PREFIX_PATH', '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy'), ('NX_CONNECTION', '172.23.34.123 52323 172.23.34.34 4000'), ('JETSON_P_NUMBER', 'p3767-0003'), ('NXDIR', '/usr/NX')]), 'shell': False}
+[7.704964] (-) TimerEvent: {}
+[7.729943] (micro_ros_agent) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[7.734251] (micro_ros_agent) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[7.734859] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/package_run_dependencies/micro_ros_agent\n'}
+[7.735234] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/parent_prefix_path/micro_ros_agent\n'}
+[7.735609] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.sh\n'}
+[7.736118] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.dsv\n'}
+[7.736407] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.sh\n'}
+[7.736682] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.dsv\n'}
+[7.737100] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.bash\n'}
+[7.737495] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.sh\n'}
+[7.737757] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.zsh\n'}
+[7.738080] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.dsv\n'}
+[7.738368] (micro_ros_agent) StdoutLine: {'line': b'-- Symlinking: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv\n'}
+[7.745664] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/packages/micro_ros_agent\n'}
+[7.747001] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[7.747315] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig.cmake\n'}
+[7.747636] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig-version.cmake\n'}
+[7.747811] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.xml\n'}
+[7.750796] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent\n'}
+[7.752014] (micro_ros_agent) StdoutLine: {'line': b'-- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/launch/micro_ros_agent_launch.py\n'}
+[7.764401] (micro_ros_agent) CommandEnded: {'returncode': 0}
+[7.808323] (-) TimerEvent: {}
+[7.909714] (-) TimerEvent: {}
+[8.010658] (-) TimerEvent: {}
+[8.116091] (-) TimerEvent: {}
+[8.217264] (-) TimerEvent: {}
+[8.318235] (-) TimerEvent: {}
+[8.419218] (-) TimerEvent: {}
+[8.520435] (-) TimerEvent: {}
+[8.621074] (-) TimerEvent: {}
+[8.725729] (-) TimerEvent: {}
+[8.826657] (-) TimerEvent: {}
+[8.928409] (-) TimerEvent: {}
+[9.029238] (-) TimerEvent: {}
+[9.130260] (-) TimerEvent: {}
+[9.231433] (-) TimerEvent: {}
+[9.332841] (-) TimerEvent: {}
+[9.435062] (-) TimerEvent: {}
+[9.535791] (-) TimerEvent: {}
+[9.637260] (-) TimerEvent: {}
+[9.741631] (-) TimerEvent: {}
+[9.842818] (-) TimerEvent: {}
+[9.943660] (-) TimerEvent: {}
+[10.047162] (-) TimerEvent: {}
+[10.150219] (-) TimerEvent: {}
+[10.251069] (-) TimerEvent: {}
+[10.352539] (-) TimerEvent: {}
+[10.453435] (-) TimerEvent: {}
+[10.554184] (-) TimerEvent: {}
+[10.577630] (micro_ros_agent) JobEnded: {'identifier': 'micro_ros_agent', 'rc': 0}
+[10.581261] (my_package) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/my_package', 'build', '--build-base', '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/build', 'install', '--record', '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log', '--single-version-externally-managed'], 'cwd': '/home/cadt-02/Object-Detection/ros2_ws/src/my_package', 'env': {'NX_ROOT': '/home/cadt-02/.nx', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'PULSE_CLIENTCONFIG': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/client.conf', 'MAIL': '/var/mail/cadt-02', 'USER': 'cadt-02', 'LC_TIME': 'km_KH', 'XDG_SESSION_TYPE': 'x11', 'NX_SYSTEM': '/usr/NX', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:', 'HOME': '/home/cadt-02', 'OLDPWD': '/home/cadt-02', 'DESKTOP_SESSION': 'ubuntu-xorg', 'JETSON_L4T': '35.4.1', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'JETSON_MODEL': 'NVIDIA Orin Nano Developer Kit', 'LC_MONETARY': 'km_KH', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-GO0kj7zqlJ,guid=beac3b9113d7e1d8735cca1d665832c8', 'COLORTERM': 'truecolor', 'PULSE_SCRIPT': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/default.pa', 'COLCON_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'cadt-02', 'JETSON_MODULE': 'NVIDIA Jetson Orin Nano (8GB ram)', 'JETSON_SERIAL_NUMBER': '1423623045966', 'PULSE_SERVER': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/native.socket', '_': '/usr/local/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'P3768', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'cadt-02', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/cadt-02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/cadt02-pc:@/tmp/.ICE-unix/2805,unix/cadt02-pc:/tmp/.ICE-unix/2805', 'PULSE_RUNTIME_PATH': '/run/user/1000/pulse', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'km_KH', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/233d7537_74ff_47f2_bc14_bb6c39409fb1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'PULSE_CONFIG': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/daemon.conf', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1001', 'LD_PRELOAD': '', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'km_KH', 'NX_TEMP': '/tmp', 'XMODIFIERS': '@im=ibus', 'XAUTHORITY': '/home/cadt-02/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra23x', 'GNOME_TERMINAL_SERVICE': ':1.119', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'km_KH', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'km_KH', 'NX_SESSION_ID': 'AE6386CD0CACE3BFBA5EA867B2662C9E', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'km_KH', 'QT_IM_MODULE': 'ibus', 'JETSON_CUDA_ARCH_BIN': '8.7', 'PWD': '/home/cadt-02/Object-Detection/ros2_ws/build/my_package', 'NX_RUNNER': '/usr/NX/bin/nxrunner', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'km_KH', 'LC_PAPER': 'km_KH', 'COLCON': '1', 'VTE_VERSION': '6003', 'JETSON_JETPACK': '5.1.2', 'CMAKE_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent', 'NX_CONNECTION': '172.23.34.123 52323 172.23.34.34 4000', 'JETSON_P_NUMBER': 'p3767-0003', 'NXDIR': '/usr/NX'}, 'shell': False}
+[10.591310] (object_detection) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/object_detection', 'build', '--build-base', '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build', 'install', '--record', '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log', '--install-scripts', '$base/lib/object_detection', '--single-version-externally-managed'], 'cwd': '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection', 'env': {'NX_ROOT': '/home/cadt-02/.nx', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'PULSE_CLIENTCONFIG': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/client.conf', 'MAIL': '/var/mail/cadt-02', 'USER': 'cadt-02', 'LC_TIME': 'km_KH', 'XDG_SESSION_TYPE': 'x11', 'NX_SYSTEM': '/usr/NX', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:', 'HOME': '/home/cadt-02', 'OLDPWD': '/home/cadt-02', 'DESKTOP_SESSION': 'ubuntu-xorg', 'JETSON_L4T': '35.4.1', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'JETSON_MODEL': 'NVIDIA Orin Nano Developer Kit', 'LC_MONETARY': 'km_KH', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-GO0kj7zqlJ,guid=beac3b9113d7e1d8735cca1d665832c8', 'COLORTERM': 'truecolor', 'PULSE_SCRIPT': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/default.pa', 'COLCON_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'cadt-02', 'JETSON_MODULE': 'NVIDIA Jetson Orin Nano (8GB ram)', 'JETSON_SERIAL_NUMBER': '1423623045966', 'PULSE_SERVER': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/native.socket', '_': '/usr/local/bin/colcon', 'ROS_VERSION': '2', 'JETSON_CODENAME': 'P3768', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'cadt-02', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/cadt-02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/cadt02-pc:@/tmp/.ICE-unix/2805,unix/cadt02-pc:/tmp/.ICE-unix/2805', 'PULSE_RUNTIME_PATH': '/run/user/1000/pulse', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'km_KH', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/233d7537_74ff_47f2_bc14_bb6c39409fb1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'PULSE_CONFIG': '/home/cadt-02/.nx/nxdevice/D-1001-AE6386CD0CACE3BFBA5EA867B2662C9E/audio/daemon.conf', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1001', 'LD_PRELOAD': '', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'km_KH', 'NX_TEMP': '/tmp', 'XMODIFIERS': '@im=ibus', 'XAUTHORITY': '/home/cadt-02/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'JETSON_SOC': 'tegra23x', 'GNOME_TERMINAL_SERVICE': ':1.119', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'km_KH', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'km_KH', 'NX_SESSION_ID': 'AE6386CD0CACE3BFBA5EA867B2662C9E', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'km_KH', 'QT_IM_MODULE': 'ibus', 'JETSON_CUDA_ARCH_BIN': '8.7', 'PWD': '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection', 'NX_RUNNER': '/usr/NX/bin/nxrunner', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'km_KH', 'LC_PAPER': 'km_KH', 'COLCON': '1', 'VTE_VERSION': '6003', 'JETSON_JETPACK': '5.1.2', 'CMAKE_PREFIX_PATH': '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent', 'NX_CONNECTION': '172.23.34.123 52323 172.23.34.34 4000', 'JETSON_P_NUMBER': 'p3767-0003', 'NXDIR': '/usr/NX'}, 'shell': False}
+[10.654394] (-) TimerEvent: {}
+[10.755104] (-) TimerEvent: {}
+[10.855711] (-) TimerEvent: {}
+[10.898911] (my_package) StderrLine: {'line': b'/home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:476: SetuptoolsDeprecationWarning: Invalid dash-separated options\n'}
+[10.899540] (my_package) StderrLine: {'line': b'!!\n'}
+[10.899741] (my_package) StderrLine: {'line': b'\n'}
+[10.900097] (my_package) StderrLine: {'line': b'        ********************************************************************************\n'}
+[10.900307] (my_package) StderrLine: {'line': b"        Usage of dash-separated 'build-base' will not be supported in future\n"}
+[10.900466] (my_package) StderrLine: {'line': b"        versions. Please use the underscore name 'build_base' instead.\n"}
+[10.900613] (my_package) StderrLine: {'line': b'\n'}
+[10.901507] (my_package) StderrLine: {'line': b'        By 2024-Sep-26, you need to update your project and remove deprecated calls\n'}
+[10.901718] (my_package) StderrLine: {'line': b'        or your builds will no longer be supported.\n'}
+[10.901867] (my_package) StderrLine: {'line': b'\n'}
+[10.902018] (my_package) StderrLine: {'line': b'        See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.\n'}
+[10.902160] (my_package) StderrLine: {'line': b'        ********************************************************************************\n'}
+[10.902296] (my_package) StderrLine: {'line': b'\n'}
+[10.902426] (my_package) StderrLine: {'line': b'!!\n'}
+[10.902589] (my_package) StderrLine: {'line': b'  opt = self.warn_dash_deprecation(opt, section)\n'}
+[10.904976] (object_detection) StderrLine: {'line': b'/home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:476: SetuptoolsDeprecationWarning: Invalid dash-separated options\n'}
+[10.905780] (object_detection) StderrLine: {'line': b'!!\n'}
+[10.906108] (object_detection) StderrLine: {'line': b'\n'}
+[10.906382] (object_detection) StderrLine: {'line': b'        ********************************************************************************\n'}
+[10.906901] (object_detection) StderrLine: {'line': b"        Usage of dash-separated 'script-dir' will not be supported in future\n"}
+[10.907187] (object_detection) StderrLine: {'line': b"        versions. Please use the underscore name 'script_dir' instead.\n"}
+[10.907445] (object_detection) StderrLine: {'line': b'\n'}
+[10.908967] (object_detection) StderrLine: {'line': b'        By 2024-Sep-26, you need to update your project and remove deprecated calls\n'}
+[10.909221] (object_detection) StderrLine: {'line': b'        or your builds will no longer be supported.\n'}
+[10.909451] (object_detection) StderrLine: {'line': b'\n'}
+[10.909686] (object_detection) StderrLine: {'line': b'        See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.\n'}
+[10.909909] (object_detection) StderrLine: {'line': b'        ********************************************************************************\n'}
+[10.910122] (object_detection) StderrLine: {'line': b'\n'}
+[10.910337] (object_detection) StderrLine: {'line': b'!!\n'}
+[10.910596] (object_detection) StderrLine: {'line': b'  opt = self.warn_dash_deprecation(opt, section)\n'}
+[10.955892] (-) TimerEvent: {}
+[11.056706] (-) TimerEvent: {}
+[11.157547] (-) TimerEvent: {}
+[11.175997] (my_package) StdoutLine: {'line': b'running egg_info\n'}
+[11.176719] (object_detection) StdoutLine: {'line': b'running egg_info\n'}
+[11.219494] (object_detection) StdoutLine: {'line': b'writing ../../build/object_detection/object_detection.egg-info/PKG-INFO\n'}
+[11.220207] (my_package) StdoutLine: {'line': b'writing ../../build/my_package/my_package.egg-info/PKG-INFO\n'}
+[11.220796] (object_detection) StdoutLine: {'line': b'writing dependency_links to ../../build/object_detection/object_detection.egg-info/dependency_links.txt\n'}
+[11.221233] (my_package) StdoutLine: {'line': b'writing dependency_links to ../../build/my_package/my_package.egg-info/dependency_links.txt\n'}
+[11.221727] (my_package) StdoutLine: {'line': b'writing entry points to ../../build/my_package/my_package.egg-info/entry_points.txt\n'}
+[11.222148] (object_detection) StdoutLine: {'line': b'writing requirements to ../../build/object_detection/object_detection.egg-info/requires.txt\n'}
+[11.222455] (object_detection) StdoutLine: {'line': b'writing top-level names to ../../build/object_detection/object_detection.egg-info/top_level.txt\n'}
+[11.222789] (my_package) StdoutLine: {'line': b'writing requirements to ../../build/my_package/my_package.egg-info/requires.txt\n'}
+[11.223084] (my_package) StdoutLine: {'line': b'writing top-level names to ../../build/my_package/my_package.egg-info/top_level.txt\n'}
+[11.257636] (-) TimerEvent: {}
+[11.358294] (-) TimerEvent: {}
+[11.459145] (-) TimerEvent: {}
+[11.544705] (my_package) StdoutLine: {'line': b"reading manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'\n"}
+[11.545647] (object_detection) StdoutLine: {'line': b"reading manifest file '../../build/object_detection/object_detection.egg-info/SOURCES.txt'\n"}
+[11.546632] (my_package) StdoutLine: {'line': b"writing manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'\n"}
+[11.547064] (my_package) StdoutLine: {'line': b'running build\n'}
+[11.547336] (my_package) StdoutLine: {'line': b'running build_py\n'}
+[11.547636] (object_detection) StdoutLine: {'line': b"writing manifest file '../../build/object_detection/object_detection.egg-info/SOURCES.txt'\n"}
+[11.547893] (my_package) StdoutLine: {'line': b'copying my_package/reinforcement_r2.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package\n'}
+[11.548168] (object_detection) StdoutLine: {'line': b'running build\n'}
+[11.548403] (object_detection) StdoutLine: {'line': b'running build_py\n'}
+[11.548568] (my_package) StdoutLine: {'line': b'copying my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package\n'}
+[11.548723] (object_detection) StdoutLine: {'line': b'copying object_detection/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build/lib/object_detection\n'}
+[11.549022] (object_detection) StdoutLine: {'line': b'running install\n'}
+[11.549275] (my_package) StdoutLine: {'line': b'copying my_package/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package\n'}
+[11.549426] (my_package) StdoutLine: {'line': b'copying my_package/main.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package\n'}
+[11.549685] (my_package) StdoutLine: {'line': b'running install\n'}
+[11.550097] (object_detection) StderrLine: {'line': b'/home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[11.550456] (object_detection) StderrLine: {'line': b'!!\n'}
+[11.550639] (object_detection) StderrLine: {'line': b'\n'}
+[11.550786] (object_detection) StderrLine: {'line': b'        ********************************************************************************\n'}
+[11.551121] (object_detection) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[11.551347] (object_detection) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[11.551501] (object_detection) StderrLine: {'line': b'        standards-based tools.\n'}
+[11.551642] (object_detection) StderrLine: {'line': b'\n'}
+[11.551777] (object_detection) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[11.551910] (object_detection) StderrLine: {'line': b'        ********************************************************************************\n'}
+[11.552044] (object_detection) StderrLine: {'line': b'\n'}
+[11.552174] (object_detection) StderrLine: {'line': b'!!\n'}
+[11.552305] (object_detection) StderrLine: {'line': b'  self.initialize_options()\n'}
+[11.552436] (my_package) StderrLine: {'line': b'/home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[11.552584] (my_package) StderrLine: {'line': b'!!\n'}
+[11.552717] (my_package) StderrLine: {'line': b'\n'}
+[11.552845] (my_package) StderrLine: {'line': b'        ********************************************************************************\n'}
+[11.552976] (my_package) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[11.553105] (my_package) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[11.553231] (my_package) StderrLine: {'line': b'        standards-based tools.\n'}
+[11.553359] (my_package) StderrLine: {'line': b'\n'}
+[11.553487] (my_package) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[11.553614] (my_package) StderrLine: {'line': b'        ********************************************************************************\n'}
+[11.553771] (my_package) StderrLine: {'line': b'\n'}
+[11.553898] (my_package) StderrLine: {'line': b'!!\n'}
+[11.554025] (my_package) StderrLine: {'line': b'  self.initialize_options()\n'}
+[11.559197] (-) TimerEvent: {}
+[11.561709] (object_detection) StdoutLine: {'line': b'running install_lib\n'}
+[11.562307] (my_package) StdoutLine: {'line': b'running install_lib\n'}
+[11.605482] (my_package) StdoutLine: {'line': b'copying /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package\n'}
+[11.606248] (object_detection) StdoutLine: {'line': b'running install_data\n'}
+[11.607052] (my_package) StdoutLine: {'line': b'byte-compiling /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/live_detection_node.py to live_detection_node.cpython-38.pyc\n'}
+[11.610406] (my_package) StdoutLine: {'line': b'running install_data\n'}
+[11.647939] (object_detection) StdoutLine: {'line': b'copying resource/object_detection -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/ament_index/resource_index/packages\n'}
+[11.648464] (object_detection) StdoutLine: {'line': b'copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection\n'}
+[11.648829] (object_detection) StdoutLine: {'line': b'running install_egg_info\n'}
+[11.651584] (my_package) StdoutLine: {'line': b'copying resource/my_package -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/ament_index/resource_index/packages\n'}
+[11.651958] (my_package) StdoutLine: {'line': b'copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package\n'}
+[11.652284] (my_package) StdoutLine: {'line': b'running install_egg_info\n'}
+[11.659309] (-) TimerEvent: {}
+[11.692920] (object_detection) StdoutLine: {'line': b"removing '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages/object_detection-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[11.694008] (object_detection) StdoutLine: {'line': b'Copying ../../build/object_detection/object_detection.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages/object_detection-0.0.0-py3.8.egg-info\n'}
+[11.695644] (my_package) StdoutLine: {'line': b"removing '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[11.697716] (my_package) StdoutLine: {'line': b'Copying ../../build/my_package/my_package.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info\n'}
+[11.698065] (object_detection) StdoutLine: {'line': b'running install_scripts\n'}
+[11.701324] (my_package) StdoutLine: {'line': b'running install_scripts\n'}
+[11.759465] (-) TimerEvent: {}
+[11.799159] (object_detection) StdoutLine: {'line': b"writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log'\n"}
+[11.799892] (my_package) StdoutLine: {'line': b'Installing live_detection_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package\n'}
+[11.800449] (my_package) StdoutLine: {'line': b'Installing main script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package\n'}
+[11.800874] (my_package) StdoutLine: {'line': b'Installing my_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package\n'}
+[11.801471] (my_package) StdoutLine: {'line': b'Installing reinforcement_r2 script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package\n'}
+[11.802160] (my_package) StdoutLine: {'line': b"writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log'\n"}
+[11.859654] (-) TimerEvent: {}
+[11.885740] (my_package) CommandEnded: {'returncode': 0}
+[11.960097] (-) TimerEvent: {}
+[12.062993] (-) TimerEvent: {}
+[12.164022] (-) TimerEvent: {}
+[12.264997] (-) TimerEvent: {}
+[12.366649] (-) TimerEvent: {}
+[12.467646] (-) TimerEvent: {}
+[12.568486] (-) TimerEvent: {}
+[12.669137] (-) TimerEvent: {}
+[12.769783] (-) TimerEvent: {}
+[12.777703] (my_package) JobEnded: {'identifier': 'my_package', 'rc': 0}
+[12.780181] (object_detection) CommandEnded: {'returncode': 0}
+[12.870062] (-) TimerEvent: {}
+[12.973614] (-) TimerEvent: {}
+[13.074266] (-) TimerEvent: {}
+[13.175064] (-) TimerEvent: {}
+[13.275749] (-) TimerEvent: {}
+[13.376639] (-) TimerEvent: {}
+[13.477605] (-) TimerEvent: {}
+[13.579859] (-) TimerEvent: {}
+[13.670585] (object_detection) JobEnded: {'identifier': 'object_detection', 'rc': 0}
+[13.673352] (-) EventReactorShutdown: {}

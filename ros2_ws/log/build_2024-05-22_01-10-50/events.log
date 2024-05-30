@@ -1,0 +1,132 @@
+[0.000000] (-) TimerEvent: {}
+[0.000874] (micro_ros_agent) JobQueued: {'identifier': 'micro_ros_agent', 'dependencies': OrderedDict()}
+[0.001588] (my_package) JobQueued: {'identifier': 'my_package', 'dependencies': OrderedDict()}
+[0.001927] (object_detection) JobQueued: {'identifier': 'object_detection', 'dependencies': OrderedDict()}
+[0.002099] (micro_ros_agent) JobStarted: {'identifier': 'micro_ros_agent'}
+[0.099323] (-) TimerEvent: {}
+[0.199994] (-) TimerEvent: {}
+[0.301559] (-) TimerEvent: {}
+[0.402674] (-) TimerEvent: {}
+[0.503863] (-) TimerEvent: {}
+[0.604802] (-) TimerEvent: {}
+[0.705367] (-) TimerEvent: {}
+[0.806797] (-) TimerEvent: {}
+[0.863929] (my_package) JobStarted: {'identifier': 'my_package'}
+[0.907462] (-) TimerEvent: {}
+[1.008229] (-) TimerEvent: {}
+[1.109099] (-) TimerEvent: {}
+[1.209775] (-) TimerEvent: {}
+[1.310622] (-) TimerEvent: {}
+[1.411249] (-) TimerEvent: {}
+[1.512262] (-) TimerEvent: {}
+[1.613526] (-) TimerEvent: {}
+[1.714174] (-) TimerEvent: {}
+[1.815232] (-) TimerEvent: {}
+[1.918326] (-) TimerEvent: {}
+[1.995630] (object_detection) JobStarted: {'identifier': 'object_detection'}
+[2.018533] (-) TimerEvent: {}
+[2.119753] (-) TimerEvent: {}
+[2.221137] (-) TimerEvent: {}
+[2.321803] (-) TimerEvent: {}
+[2.423235] (-) TimerEvent: {}
+[2.526136] (-) TimerEvent: {}
+[2.631429] (-) TimerEvent: {}
+[2.733568] (-) TimerEvent: {}
+[2.839360] (-) TimerEvent: {}
+[2.940770] (-) TimerEvent: {}
+[3.042474] (-) TimerEvent: {}
+[3.133247] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'cmake'}
+[3.134848] (micro_ros_agent) JobProgress: {'identifier': 'micro_ros_agent', 'progress': 'build'}
+[3.136208] (micro_ros_agent) Command: {'cmd': ['/home/cadt-02/.local/bin/cmake', '--build', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', '--', '-j6', '-l6'], 'cwd': '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'cadt-02'), ('LC_TIME', 'km_KH'), ('SSH_AGENT_PID', '2300'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda-11.4/lib64:'), ('HOME', '/home/cadt-02'), ('OLDPWD', '/home/cadt-02/Object-Detection/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('JETSON_L4T', '35.4.1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('JETSON_MODEL', 'NVIDIA Orin Nano Developer Kit'), ('LC_MONETARY', 'km_KH'), ('MANAGERPID', '1669'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c878ef0243aef060f7b6e9d5664c3038'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'cadt-02'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1423623045966'), ('JOURNAL_STREAM', '8:55052'), ('_', '/usr/local/bin/colcon'), ('ROS_VERSION', '2'), ('JETSON_CODENAME', 'P3768'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'cadt-02'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/cuda-11.4/bin:/home/cadt-02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/cadt02-pc:@/tmp/.ICE-unix/2336,unix/cadt02-pc:/tmp/.ICE-unix/2336'), ('INVOCATION_ID', 'a71d647f6f6b4fa885a40c8a0ace166d'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'km_KH'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/8be2944a_5f29_4f39_a8cb_d708c5cfed45'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'km_KH'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra23x'), ('GNOME_TERMINAL_SERVICE', ':1.1993'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'km_KH'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'km_KH'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'km_KH'), ('QT_IM_MODULE', 'ibus'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c878ef0243aef060f7b6e9d5664c3038'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'km_KH'), ('LC_PAPER', 'km_KH'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('JETSON_JETPACK', '5.1.2'), ('JETSON_P_NUMBER', 'p3767-0003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[3.142845] (-) TimerEvent: {}
+[3.244158] (-) TimerEvent: {}
+[3.344986] (-) TimerEvent: {}
+[3.445627] (-) TimerEvent: {}
+[3.546295] (-) TimerEvent: {}
+[3.647079] (-) TimerEvent: {}
+[3.747878] (-) TimerEvent: {}
+[3.848707] (-) TimerEvent: {}
+[3.949494] (-) TimerEvent: {}
+[4.050207] (-) TimerEvent: {}
+[4.151177] (-) TimerEvent: {}
+[4.251835] (-) TimerEvent: {}
+[4.353212] (-) TimerEvent: {}
+[4.454459] (-) TimerEvent: {}
+[4.505252] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[4.506825] (micro_ros_agent) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[4.510642] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_cmake: 1.3.1 (/opt/ros/foxy/share/rosidl_cmake/cmake)\n'}
+[4.511278] (micro_ros_agent) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[4.511606] (micro_ros_agent) StdoutLine: {'line': b'-- Found fastrtps_cmake_module: 1.0.4 (/opt/ros/foxy/share/fastrtps_cmake_module/cmake)\n'}
+[4.512139] (micro_ros_agent) StdoutLine: {'line': b'-- Found rmw_dds_common: 1.0.3 (/opt/ros/foxy/share/rmw_dds_common/cmake)\n'}
+[4.512482] (micro_ros_agent) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.512787] (micro_ros_agent) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.513070] (micro_ros_agent) StdoutLine: {'line': b'-- Found rmw_fastrtps_shared_cpp: 1.3.2 (/opt/ros/foxy/share/rmw_fastrtps_shared_cpp/cmake)\n'}
+[4.513386] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[4.513658] (micro_ros_agent) StdoutLine: {'line': b'-- Found ament_cmake_gtest: 0.9.12 (/opt/ros/foxy/share/ament_cmake_gtest/cmake)\n'}
+[4.513922] (micro_ros_agent) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[4.514196] (micro_ros_agent) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at /opt/ros/foxy/share/ament_cmake_core/cmake/core/python.cmake:22 (find_package):\n'}
+[4.514563] (micro_ros_agent) StderrLine: {'line': b'  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules\n'}
+[4.514835] (micro_ros_agent) StderrLine: {'line': b'  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use\n'}
+[4.515092] (micro_ros_agent) StderrLine: {'line': b'  the cmake_policy command to set the policy and suppress this warning.\n'}
+[4.515344] (micro_ros_agent) StderrLine: {'line': b'\n'}
+[4.515592] (micro_ros_agent) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[4.515837] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/core/all.cmake:53 (include)\n'}
+[4.516190] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_core-extras.cmake:17 (include)\n'}
+[4.516467] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)\n'}
+[4.516723] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)\n'}
+[4.516977] (micro_ros_agent) StderrLine: {'line': b'  /opt/ros/foxy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)\n'}
+[4.517224] (micro_ros_agent) StderrLine: {'line': b'  CMakeLists.txt:33 (find_package)\n'}
+[4.517464] (micro_ros_agent) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[4.517705] (micro_ros_agent) StderrLine: {'line': b'\x1b[0m\n'}
+[4.517943] (micro_ros_agent) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:51 (find_package):\n'}
+[4.518192] (micro_ros_agent) StderrLine: {'line': b'  By not providing "Findmicro_ros_msgs.cmake" in CMAKE_MODULE_PATH this\n'}
+[4.518436] (micro_ros_agent) StderrLine: {'line': b'  project has asked CMake to find a package configuration file provided by\n'}
+[4.518673] (micro_ros_agent) StderrLine: {'line': b'  "micro_ros_msgs", but CMake did not find one.\n'}
+[4.518911] (micro_ros_agent) StderrLine: {'line': b'\n'}
+[4.519147] (micro_ros_agent) StderrLine: {'line': b'  Could not find a package configuration file provided by "micro_ros_msgs"\n'}
+[4.519383] (micro_ros_agent) StderrLine: {'line': b'  with any of the following names:\n'}
+[4.519621] (micro_ros_agent) StderrLine: {'line': b'\n'}
+[4.519856] (micro_ros_agent) StderrLine: {'line': b'    micro_ros_msgsConfig.cmake\n'}
+[4.520124] (micro_ros_agent) StderrLine: {'line': b'    micro_ros_msgs-config.cmake\n'}
+[4.520391] (micro_ros_agent) StderrLine: {'line': b'\n'}
+[4.520633] (micro_ros_agent) StderrLine: {'line': b'  Add the installation prefix of "micro_ros_msgs" to CMAKE_PREFIX_PATH or set\n'}
+[4.520881] (micro_ros_agent) StderrLine: {'line': b'  "micro_ros_msgs_DIR" to a directory containing one of the above files.  If\n'}
+[4.521127] (micro_ros_agent) StderrLine: {'line': b'  "micro_ros_msgs" provides a separate development package or SDK, be sure it\n'}
+[4.521367] (micro_ros_agent) StderrLine: {'line': b'  has been installed.\n'}
+[4.521607] (micro_ros_agent) StderrLine: {'line': b'\n'}
+[4.521846] (micro_ros_agent) StderrLine: {'line': b'\x1b[0m\n'}
+[4.522084] (micro_ros_agent) StderrLine: {'line': b'make: *** [Makefile:166: cmake_check_build_system] Error 1\n'}
+[4.554591] (-) TimerEvent: {}
+[4.655303] (-) TimerEvent: {}
+[4.756090] (-) TimerEvent: {}
+[4.856925] (-) TimerEvent: {}
+[4.958018] (-) TimerEvent: {}
+[5.058865] (-) TimerEvent: {}
+[5.160427] (-) TimerEvent: {}
+[5.261928] (-) TimerEvent: {}
+[5.363369] (-) TimerEvent: {}
+[5.465209] (-) TimerEvent: {}
+[5.566503] (-) TimerEvent: {}
+[5.667533] (-) TimerEvent: {}
+[5.769637] (-) TimerEvent: {}
+[5.840614] (micro_ros_agent) CommandEnded: {'returncode': 2}
+[5.869834] (-) TimerEvent: {}
+[5.971970] (-) TimerEvent: {}
+[6.073080] (-) TimerEvent: {}
+[6.173814] (-) TimerEvent: {}
+[6.278096] (-) TimerEvent: {}
+[6.379625] (-) TimerEvent: {}
+[6.480341] (-) TimerEvent: {}
+[6.581501] (-) TimerEvent: {}
+[6.682905] (-) TimerEvent: {}
+[6.785502] (-) TimerEvent: {}
+[6.886196] (-) TimerEvent: {}
+[6.990942] (-) TimerEvent: {}
+[7.091776] (-) TimerEvent: {}
+[7.095984] (micro_ros_agent) JobEnded: {'identifier': 'micro_ros_agent', 'rc': 2}
+[7.191974] (-) TimerEvent: {}
+[7.292847] (-) TimerEvent: {}
+[7.383524] (object_detection) JobEnded: {'identifier': 'object_detection', 'rc': 'SIGINT'}
+[7.392830] (my_package) JobEnded: {'identifier': 'my_package', 'rc': 'SIGINT'}
+[7.393661] (-) TimerEvent: {}
+[7.404982] (-) EventReactorShutdown: {}

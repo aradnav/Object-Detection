@@ -5,7 +5,7 @@ from stable_baselines3 import DQN
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.monitor import Monitor
 import gym
-from gymnasium import spaces
+from gym import spaces
 from gym.core import ObservationWrapper
 import numpy as np
 import torch
@@ -24,7 +24,7 @@ class Observation:
 
     def to_json(self):
         return json.dumps({
-            "silo_states": self.silo_states.tolist(),
+            "silo_states": self.silo_states,
             "ball_color": self.ball_color,
             "team_color": self.team_color
         })
@@ -43,8 +43,8 @@ class ObjectDetectionEnv(gym.Env):
         super(ObjectDetectionEnv, self).__init__()
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = YOLO(model_path)
-        self.silo_states = np.zeros(5)  # Stores the number of balls in each silo
-        self.ball_color = None  # Color of the ball (0 for red, 1 for blue)
+        self.silo_states = [""] * 5  # Stores the balls in each of the 5 silos
+        self.ball_colors = ["blue", "purple", "red"]
         self.team_color = None  # Current team color (0 for red, 1 for blue)
         self.game_over = False
 
@@ -57,8 +57,8 @@ class ObjectDetectionEnv(gym.Env):
 
         self.action_space = spaces.Discrete(5)  # Number of silos
         self.observation_space = spaces.Dict({
-            "silo_states": spaces.Box(low=0, high=3, shape=(5,), dtype=np.float32),
-            "ball_color": spaces.Discrete(2),  # Red or blue
+            "silo_states": spaces.MultiDiscrete([13] * 5),  # Each silo can have up to 3 balls of 3 types
+            "ball_color": spaces.Discrete(3),  # Blue, purple, red
             "team_color": spaces.Discrete(2)   # Red or blue
         })
 
@@ -71,8 +71,8 @@ class ObjectDetectionEnv(gym.Env):
 
     def reset(self, **kwargs):
         # Reset environment to initial state
-        self.silo_states = np.zeros(5)
-        self.ball_color = np.random.choice([0, 1])  # Randomly assign ball color (0 for red, 1 for blue)
+        self.silo_states = [""] * 5
+        self.ball_color = np.random.choice(self.ball_colors)  # Randomly assign ball color
         self.team_color = np.random.choice([0, 1])  # Randomly assign team color (0 for red, 1 for blue)
         self.game_over = False
         return self._get_observation(), None
@@ -83,7 +83,7 @@ class ObjectDetectionEnv(gym.Env):
             raise ValueError("Episode is already done. Please reset the environment.")
 
         # Perform action (place ball in silo)
-        self.silo_states[action] += 1
+        self.silo_states[action] += self.ball_color[0].upper()  # Add first letter of ball color
 
         # Perform live object detection
         detections = self.perform_object_detection()
@@ -92,15 +92,15 @@ class ObjectDetectionEnv(gym.Env):
         self.update_state_with_detections(detections)
 
         # Check if any silo is full
-        if np.any(self.silo_states >= 3):
+        if any(len(silo) >= 3 for silo in self.silo_states):
             # Check for winning condition
-            if np.sum(self.silo_states[self.silo_states >= 3]) >= 3:
+            if sum(len(silo) >= 3 for silo in self.silo_states) >= 3:
                 # Team wins if at least 3 silos are filled
                 reward = 100  # High reward for winning
                 self.game_over = True
             else:
                 # Count balls in filled silos as points
-                reward = np.sum(self.silo_states[self.silo_states >= 3]) * 30
+                reward = sum(len(silo) >= 3 for silo in self.silo_states) * 30
                 self.game_over = True
         else:
             reward = 0  # No reward if the game is still ongoing
@@ -144,24 +144,33 @@ class ObjectDetectionEnv(gym.Env):
             label = detection["label"]
             confidence = detection["confidence"]
 
-            if label == 0 and confidence > 0.5:  # Assuming 0 is the label for red ball
-                self.ball_color = 0
-            elif label == 1 and confidence > 0.5:  # Assuming 1 is the label for blue ball
-                self.ball_color = 1
-            elif label == 2 and confidence > 0.5:  # Assuming 2 is the label for "NULL"
+            if label == 0 and confidence > 0.5:  # Assuming 0 is the label for blue ball
+                self.ball_color = "blue"
+            elif label == 1 and confidence > 0.5:  # Assuming 1 is the label for purple ball
+                self.ball_color = "purple"
+            elif label == 2 and confidence > 0.5:  # Assuming 2 is the label for red ball
+                self.ball_color = "red"
+            elif label == 3 and confidence > 0.5:  # Assuming 3 is the label for "NULL"
                 # Check if ball is in a silo
                 for i, silo_bbox in enumerate(self.get_silo_bboxes()):
                     if self.check_overlap(detection["bbox"], silo_bbox):
-                        self.silo_states[i] -= 1
+                        if self.silo_states[i]:
+                            self.silo_states[i] = self.silo_states[i][:-1]  # Remove last ball
                         break
 
     def _get_observation(self):
         # Return current observation (state of the game)
-        return {
-            "silo_states": self.silo_states.copy(),
-            "ball_color": self.ball_color,
+        observation = {
+            "silo_states": [self._encode_silo(silo) for silo in self.silo_states],
+            "ball_color": self.ball_colors.index(self.ball_color),
             "team_color": self.team_color
         }
+        return observation
+
+    def _encode_silo(self, silo):
+        # Encode silo state as a discrete number for the observation space
+        encoding = {"": 0, "B": 1, "P": 2, "R": 3, "BB": 4, "BP": 5, "BR": 6, "PB": 7, "PP": 8, "PR": 9, "RB": 10, "RP": 11, "RR": 12}
+        return encoding.get(silo, 0)
 
     def render(self, mode='human'):
         if mode == 'human':
@@ -264,11 +273,10 @@ class ObjectDetectionNode(Node):
         done = False
         while not done:
             # Publish observation
-            # Inside timer_callback method
             observation_json = {
-                "silo_states": observation["silo_states"].tolist(),  # Access using keys instead of indices
-                "ball_color": int(observation["ball_color"]),        # Access using keys instead of indices
-                "team_color": int(observation["team_color"])         # Access using keys instead of indices
+                "silo_states": observation["silo_states"],
+                "ball_color": int(observation["ball_color"]),
+                "team_color": int(observation["team_color"])
             }
 
             msg = String()
@@ -289,9 +297,7 @@ class ObjectDetectionNode(Node):
             self.model.get_writer().add_scalar("reward", reward, self.episode_count)
 
             # Update observation for next step
-            # Reset environment for each episode
-            observation = self.env.reset()
-
+            observation = next_observation
 
         self.episode_count += 1
 
@@ -303,4 +309,3 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
-

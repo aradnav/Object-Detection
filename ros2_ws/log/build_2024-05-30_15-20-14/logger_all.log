@@ -1,0 +1,314 @@
+[16.330s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/local/bin/colcon', 'build'][0m
+[16.331s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff9cf39d30>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=6, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff9cf39d30>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff9cc49d60>)[0m
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[17.021s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[17.022s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/home/cadt-02/Object-Detection/ros2_ws'
+[17.022s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[17.022s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[17.022s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[17.022s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[17.022s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[17.023s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[17.023s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[17.023s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[17.023s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[17.104s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[17.104s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[17.104s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[17.104s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[17.105s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[17.105s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[17.105s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[17.105s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['ignore', 'ignore_ament_install']
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'ignore'
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'ignore_ament_install'
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['colcon_pkg']
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'colcon_pkg'
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['colcon_meta']
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'colcon_meta'
+[17.106s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['ros']
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'ros'
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['cmake', 'python']
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'cmake'
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'python'
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extensions ['python_setup_py']
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(dqn_logs) by extension 'python_setup_py'
+[17.107s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[17.108s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[17.108s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[17.108s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[17.109s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[17.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['ignore', 'ignore_ament_install']
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'ignore'
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'ignore_ament_install'
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['colcon_pkg']
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'colcon_pkg'
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['colcon_meta']
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'colcon_meta'
+[17.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['ros']
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'ros'
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['cmake', 'python']
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'cmake'
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'python'
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extensions ['python_setup_py']
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent) by extension 'python_setup_py'
+[17.112s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extensions ['ignore', 'ignore_ament_install']
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extension 'ignore'
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extension 'ignore_ament_install'
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extensions ['colcon_pkg']
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extension 'colcon_pkg'
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extensions ['colcon_meta']
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extension 'colcon_meta'
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extensions ['ros']
+[17.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/micro_ros_agent) by extension 'ros'
+[17.120s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/micro-ROS-Agent/micro_ros_agent' with type 'ros.ament_cmake' and name 'micro_ros_agent'[0m
+[17.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['ignore', 'ignore_ament_install']
+[17.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'ignore'
+[17.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'ignore_ament_install'
+[17.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['colcon_pkg']
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'colcon_pkg'
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['colcon_meta']
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'colcon_meta'
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['ros']
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'ros'
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['cmake', 'python']
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'cmake'
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'python'
+[17.122s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extensions ['python_setup_py']
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap) by extension 'python_setup_py'
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['ignore', 'ignore_ament_install']
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'ignore'
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'ignore_ament_install'
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['colcon_pkg']
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'colcon_pkg'
+[17.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['colcon_meta']
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'colcon_meta'
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['ros']
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'ros'
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['cmake', 'python']
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'cmake'
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'python'
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extensions ['python_setup_py']
+[17.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/hooks) by extension 'python_setup_py'
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['ignore', 'ignore_ament_install']
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'ignore'
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'ignore_ament_install'
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['colcon_pkg']
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'colcon_pkg'
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['colcon_meta']
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'colcon_meta'
+[17.125s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['ros']
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'ros'
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['cmake', 'python']
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'cmake'
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'python'
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extensions ['python_setup_py']
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/micro-ROS-Agent/snap/local) by extension 'python_setup_py'
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extensions ['ignore', 'ignore_ament_install']
+[17.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extension 'ignore'
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extension 'ignore_ament_install'
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extensions ['colcon_pkg']
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extension 'colcon_pkg'
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extensions ['colcon_meta']
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extension 'colcon_meta'
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extensions ['ros']
+[17.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/my_package) by extension 'ros'
+[17.129s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/my_package' with type 'ros.ament_python' and name 'my_package'[0m
+[17.129s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extensions ['ignore', 'ignore_ament_install']
+[17.129s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extension 'ignore'
+[17.129s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extension 'ignore_ament_install'
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extensions ['colcon_pkg']
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extension 'colcon_pkg'
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extensions ['colcon_meta']
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extension 'colcon_meta'
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extensions ['ros']
+[17.130s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/object_detection) by extension 'ros'
+[17.131s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/object_detection' with type 'ros.ament_python' and name 'object_detection'[0m
+[17.131s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[17.131s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[17.131s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[17.131s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[17.132s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_args' from command line to 'None'
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_target' from command line to 'None'
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_clean_cache' from command line to 'False'
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_clean_first' from command line to 'False'
+[18.305s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'cmake_force_configure' from command line to 'False'
+[18.306s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'ament_cmake_args' from command line to 'None'
+[18.306s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'catkin_cmake_args' from command line to 'None'
+[18.306s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'micro_ros_agent' build argument 'catkin_skip_building_tests' from command line to 'False'
+[18.306s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'micro_ros_agent' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent', 'merge_install': False, 'path': '/home/cadt-02/Object-Detection/ros2_ws/src/micro-ROS-Agent/micro_ros_agent', 'symlink_install': False, 'test_result_base': None}[0m
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_args' from command line to 'None'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_target' from command line to 'None'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_clean_cache' from command line to 'False'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_clean_first' from command line to 'False'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'cmake_force_configure' from command line to 'False'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'ament_cmake_args' from command line to 'None'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'catkin_cmake_args' from command line to 'None'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'my_package' build argument 'catkin_skip_building_tests' from command line to 'False'
+[18.587s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'my_package' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/cadt-02/Object-Detection/ros2_ws/build/my_package', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/cadt-02/Object-Detection/ros2_ws/install/my_package', 'merge_install': False, 'path': '/home/cadt-02/Object-Detection/ros2_ws/src/my_package', 'symlink_install': False, 'test_result_base': None}[0m
+[18.869s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_args' from command line to 'None'
+[18.869s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_target' from command line to 'None'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_clean_cache' from command line to 'False'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_clean_first' from command line to 'False'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'cmake_force_configure' from command line to 'False'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'ament_cmake_args' from command line to 'None'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'catkin_cmake_args' from command line to 'None'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'object_detection' build argument 'catkin_skip_building_tests' from command line to 'False'
+[18.870s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'object_detection' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection', 'merge_install': False, 'path': '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection', 'symlink_install': False, 'test_result_base': None}[0m
+[19.150s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[19.432s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[19.433s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/cadt-02/Object-Detection/ros2_ws/src/micro-ROS-Agent/micro_ros_agent' with build type 'ament_cmake'
+[19.434s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/cadt-02/Object-Detection/ros2_ws/src/micro-ROS-Agent/micro_ros_agent'
+[19.734s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[19.735s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[19.735s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[20.636s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package' with build type 'ament_python'
+[20.637s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('my_package', 'ament_prefix_path')
+[20.929s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/ament_prefix_path.ps1'
+[20.932s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/ament_prefix_path.dsv'
+[20.933s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/ament_prefix_path.sh'
+[21.225s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[21.226s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[22.108s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection' with build type 'ament_python'
+[22.109s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('object_detection', 'ament_prefix_path')
+[22.404s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/ament_prefix_path.ps1'
+[22.405s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/ament_prefix_path.dsv'
+[22.406s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/ament_prefix_path.sh'
+[22.695s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[22.696s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[23.577s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6[0m
+[24.107s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package'
+[24.399s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[24.399s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[25.767s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection'
+[26.058s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[26.059s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[26.927s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6[0m
+[27.118s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent[0m
+[27.208s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(micro_ros_agent)
+[27.211s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection:/home/cadt-02/Object-Detection/ros2_ws/install/my_package:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent[0m
+[27.515s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent' for CMake module files
+[27.516s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent' for CMake config files
+[27.516s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'cmake_prefix_path')
+[27.814s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.ps1'
+[27.815s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.dsv'
+[27.816s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.sh'
+[27.818s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib'
+[27.818s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'ld_library_path_lib')
+[28.112s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.ps1'
+[28.114s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.dsv'
+[28.115s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.sh'
+[28.117s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/bin'
+[28.117s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/pkgconfig/micro_ros_agent.pc'
+[28.118s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/python3.8/site-packages'
+[28.118s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/bin'
+[28.414s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.ps1'
+[28.416s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv'
+[28.418s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.sh'
+[28.419s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.bash'
+[28.421s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.zsh'
+[28.423s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/colcon-core/packages/micro_ros_agent)
+[28.518s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/object_detection build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log --install-scripts $base/lib/object_detection --single-version-externally-managed[0m
+[28.528s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed[0m
+[28.846s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(micro_ros_agent)
+[29.146s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent' for CMake module files
+[29.148s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent' for CMake config files
+[29.148s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'cmake_prefix_path')
+[29.442s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.ps1'
+[29.443s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.dsv'
+[29.444s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/cmake_prefix_path.sh'
+[29.445s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib'
+[29.445s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('micro_ros_agent', 'ld_library_path_lib')
+[29.777s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.ps1'
+[29.779s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.dsv'
+[29.779s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/hook/ld_library_path_lib.sh'
+[29.780s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/bin'
+[29.780s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/pkgconfig/micro_ros_agent.pc'
+[29.781s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/python3.8/site-packages'
+[29.781s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/bin'
+[30.072s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.ps1'
+[30.074s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv'
+[30.075s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.sh'
+[30.076s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.bash'
+[30.076s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.zsh'
+[30.078s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/colcon-core/packages/micro_ros_agent)
+[30.082s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/object_detection' returned '0': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/object_detection build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/install.log --install-scripts $base/lib/object_detection --single-version-externally-managed[0m
+[30.372s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection' for CMake module files
+[30.373s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection' for CMake config files
+[30.374s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib'
+[30.374s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/bin'
+[30.375s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/pkgconfig/object_detection.pc'
+[30.375s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages'
+[30.375s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('object_detection', 'pythonpath')
+[30.665s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/pythonpath.ps1'
+[30.666s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/pythonpath.dsv'
+[30.667s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/hook/pythonpath.sh'
+[30.668s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/bin'
+[30.668s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(object_detection)
+[30.955s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/package.ps1'
+[30.956s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/package.dsv'
+[30.957s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/package.sh'
+[30.958s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/package.bash'
+[30.959s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection/package.zsh'
+[30.959s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/colcon-core/packages/object_detection)
+[30.968s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package' returned '0': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed[0m
+[31.256s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package' for CMake module files
+[31.257s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package' for CMake config files
+[31.259s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib'
+[31.259s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/bin'
+[31.259s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/pkgconfig/my_package.pc'
+[31.260s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages'
+[31.260s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('my_package', 'pythonpath')
+[31.548s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/pythonpath.ps1'
+[31.550s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/pythonpath.dsv'
+[31.550s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/hook/pythonpath.sh'
+[31.552s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/bin'
+[31.552s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(my_package)
+[31.841s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/package.ps1'
+[31.842s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/package.dsv'
+[31.843s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/package.sh'
+[31.844s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/package.bash'
+[31.845s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package/package.zsh'
+[31.845s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/colcon-core/packages/my_package)
+[31.846s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[31.847s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[31.847s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[31.847s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[32.148s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[32.149s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[32.149s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[32.205s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[32.497s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/cadt-02/Object-Detection/ros2_ws/install/local_setup.ps1'
+[32.500s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/cadt-02/Object-Detection/ros2_ws/install/_local_setup_util_ps1.py'
+[32.502s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/cadt-02/Object-Detection/ros2_ws/install/setup.ps1'
+[32.786s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/cadt-02/Object-Detection/ros2_ws/install/local_setup.sh'
+[32.788s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/cadt-02/Object-Detection/ros2_ws/install/_local_setup_util_sh.py'
+[32.789s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/cadt-02/Object-Detection/ros2_ws/install/setup.sh'
+[33.072s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/cadt-02/Object-Detection/ros2_ws/install/local_setup.bash'
+[33.073s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/cadt-02/Object-Detection/ros2_ws/install/setup.bash'
+[33.356s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/cadt-02/Object-Detection/ros2_ws/install/local_setup.zsh'
+[33.358s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/cadt-02/Object-Detection/ros2_ws/install/setup.zsh'

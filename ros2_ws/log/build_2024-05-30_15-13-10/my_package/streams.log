@@ -1,0 +1,62 @@
+[7.912s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed
+[8.230s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:476: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[8.231s] !!
+[8.232s] 
+[8.233s]         ********************************************************************************
+[8.234s]         Usage of dash-separated 'build-base' will not be supported in future
+[8.238s]         versions. Please use the underscore name 'build_base' instead.
+[8.239s] 
+[8.241s]         By 2024-Sep-26, you need to update your project and remove deprecated calls
+[8.241s]         or your builds will no longer be supported.
+[8.242s] 
+[8.242s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[8.243s]         ********************************************************************************
+[8.244s] 
+[8.244s] !!
+[8.245s]   opt = self.warn_dash_deprecation(opt, section)
+[8.517s] running egg_info
+[8.560s] writing ../../build/my_package/my_package.egg-info/PKG-INFO
+[8.562s] writing dependency_links to ../../build/my_package/my_package.egg-info/dependency_links.txt
+[8.562s] writing entry points to ../../build/my_package/my_package.egg-info/entry_points.txt
+[8.563s] writing requirements to ../../build/my_package/my_package.egg-info/requires.txt
+[8.563s] writing top-level names to ../../build/my_package/my_package.egg-info/top_level.txt
+[8.897s] reading manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.903s] writing manifest file '../../build/my_package/my_package.egg-info/SOURCES.txt'
+[8.903s] running build
+[8.903s] running build_py
+[8.903s] copying my_package/reinforcement_r2.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.903s] copying my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.904s] copying my_package/__init__.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.904s] copying my_package/main.py -> /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package
+[8.904s] running install
+[8.904s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[8.904s] !!
+[8.904s] 
+[8.904s]         ********************************************************************************
+[8.905s]         Please avoid running ``setup.py`` directly.
+[8.905s]         Instead, use pypa/build, pypa/installer or other
+[8.905s]         standards-based tools.
+[8.905s] 
+[8.905s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[8.905s]         ********************************************************************************
+[8.905s] 
+[8.906s] !!
+[8.906s]   self.initialize_options()
+[8.916s] running install_lib
+[8.960s] copying /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package/reinforcement_r2.py -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package
+[8.961s] copying /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build/lib/my_package/live_detection_node.py -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package
+[8.963s] byte-compiling /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/reinforcement_r2.py to reinforcement_r2.cpython-38.pyc
+[8.966s] byte-compiling /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package/live_detection_node.py to live_detection_node.cpython-38.pyc
+[8.971s] running install_data
+[9.012s] copying resource/my_package -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/ament_index/resource_index/packages
+[9.013s] copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/my_package/share/my_package
+[9.013s] running install_egg_info
+[9.060s] removing '/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info' (and everything under it)
+[9.067s] Copying ../../build/my_package/my_package.egg-info to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages/my_package-0.0.0-py3.8.egg-info
+[9.068s] running install_scripts
+[9.167s] Installing live_detection_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[9.169s] Installing main script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[9.170s] Installing my_node script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[9.172s] Installing reinforcement_r2 script to /home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/my_package
+[9.173s] writing list of installed files to '/home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log'
+[10.392s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/src/my_package' returned '0': NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/my_package/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/my_package/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/my_package build --build-base /home/cadt-02/Object-Detection/ros2_ws/build/my_package/build install --record /home/cadt-02/Object-Detection/ros2_ws/build/my_package/install.log --single-version-externally-managed

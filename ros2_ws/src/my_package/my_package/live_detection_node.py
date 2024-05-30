@@ -1,22 +1,22 @@
 import rclpy
 from rclpy.node import Node
 import cv2
-import os 
-import time
 import pyrealsense2 as rs
 import torch
 import numpy as np
 from ultralytics import YOLO
 import math
 import supervision as sv
+from geometry_msgs.msg import Twist
 
 class LiveObjectDetectionNode(Node):
 
     def __init__(self):
         super().__init__('live_object_detection_node')
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model = YOLO("/home/cadt-02/Object-Detection/ros2_ws/model_- 18 march 2024 15_19.pt")
+        self.model = YOLO("/home/cadt-02/Downloads/best.pt")
         self.initialize_camera()
+        self.twist_publisher = self.create_publisher(Twist, 'cmd_vel', 10)  # Create the publisher
 
     def initialize_camera(self):
         # Initialize the RealSense D455 camera
@@ -25,10 +25,8 @@ class LiveObjectDetectionNode(Node):
         self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
         self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
         self.profile = self.pipeline.start(self.config)
-        self.prev_depth_frame = None  
-        # Get the depth camera's intrinsics
-        depth_intrinsics = self.profile.get_stream(rs.stream.depth).as_video_stream_profile().get_intrinsics()
-    
+        self.prev_depth_frame = None
+
     def capture_depth_frame(self):
         # Wait for a coherent pair of frames: depth and color
         frames = self.pipeline.wait_for_frames()
@@ -58,6 +56,11 @@ class LiveObjectDetectionNode(Node):
         angle = math.atan(distance2 / (frame_width / 2) * math.tan(fov / 2)) - math.atan(distance1 / (frame_width / 2) * math.tan(fov / 2))
         return angle
 
+    def calc_dist(self,depth, omega):
+        x = math.cos(omega)* depth
+        y = math.sin(omega) * depth
+        self.send_twist_command(x,y,omega)
+    
     def calculate_middle_angle(self, center_x, frame_width):
         """
         Calculate the angle to adjust the camera to the middle position.
@@ -110,6 +113,15 @@ class LiveObjectDetectionNode(Node):
         # Draw vertical lines
         for i in range(1, num_cols):
             cv2.line(image, (i * cell_width, 0), (i * cell_width, height), color, thickness)
+
+    def send_twist_command(self, linear_x, linear_y, angular_z):
+        # Create a Twist message
+        twist_msg = Twist()
+        twist_msg.linear.x = linear_x
+        twist_msg.linear.y = linear_y
+        twist_msg.angular.z = angular_z
+        # Publish the message
+        self.twist_publisher.publish(twist_msg)
 
     def update(self):
         '''main Function'''
@@ -165,61 +177,37 @@ class LiveObjectDetectionNode(Node):
                 print(f"Distance to {self.model.model.names[det[3]]}: {depth:.2f} meters")
                 cv2.circle(annotated_image, (center_x, center_y), 5, (0, 255, 255), -1)
 
-                if self.prev_depth_frame is not None:
-                    prev_depth_data = np.asanyarray(self.prev_depth_frame.get_data())
-
-                    # Calculate optical flow between the current and previous depth frames
-                    optical_flow = cv2.calcOpticalFlowFarneback(prev_depth_data, depth_image, None, 0.5, 3, 15, 3, 5, 1.2, 0)
-
-                    # Get the depth camera's intrinsics
-                    depth_intrinsics = self.profile.get_stream(rs.stream.depth).as_video_stream_profile().get_intrinsics()
-
-                    fx = depth_intrinsics.fx
-                    fy = depth_intrinsics.fy
-                    cx = depth_intrinsics.ppx
-                    cy = depth_intrinsics.ppy
-                    # Initialize RealSense camera and obtain intrinsic parameters
-                    camera_intrinsics = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])  # Example intrinsic parameters
-
-                    # Estimate ball position (x, y, z) in 3D space
-                    ball_x_3d, ball_y_3d, ball_z_3d = self.get_detection_position(center_x, center_y, depth_value, camera_intrinsics)
-
-                    # Display ball position
-                    print("Ball Position (x, y, z):", ball_x_3d, ball_y_3d, ball_z_3d)
-
-                    # Extract optical flow at ball position
-                    flow_at_ball = optical_flow[center_y, center_x]
-
-                    # Estimate angular velocity (omega)
-                    omega = np.arctan2(flow_at_ball[1], flow_at_ball[0])
-
-                    # Display estimated orientation
-                    print("Estimated Orientation (omega):", omega)
-
-                    # Draw bounding box on the image
-                    x1, y1, x2, y2 = box.astype(int)
-                    cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-                    self.draw_red_dot(annotated_image)
-                    # Store center positions and depths of red and blue balls
-                    if self.model.model.names[det[3]] == "red":
-                        center_x_red = center_x
-                        depth_red = depth
-                    elif self.model.model.names[det[3]] == "blue":
-                        center_x_blue = center_x
-                        depth_blue = depth
-
-            if center_x_red is not None and center_x_blue is not None:
-                print("Inside angle calculation block")
-                angle = self.calculate_angle(center_x_red, center_x_blue, color_image.shape[1], fov)
-                print(f"Rotate camera by {math.degrees(angle):.2f} degrees")
-                movement = self.determine_movement((center_x_red + center_x_blue) / 2, color_image.shape[1])
-                print(f"Move camera {movement}")
+                # Draw bounding box on the image
+                x1, y1, x2, y2 = box.astype(int)
+                cv2.rectangle(annotated_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.putText(annotated_image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                self.draw_red_dot(annotated_image)
+                # Store center positions and depths of red and blue balls
+                if self.model.model.names[det[3]] == "Red ball":
+                    center_x_red = center_x
+                    depth_red = depth
+                elif self.model.model.names[det[3]] == "Blue ball":
+                    center_x_blue = center_x
+                    depth_blue = depth
+                
+                
+                
+                    
+                
 
             if center_x_red is not None:
                 print("Inside middle angle calculation block")
                 middle_angle = self.calculate_middle_angle(center_x_red, color_image.shape[1])
                 print(f"Adjust camera to middle by {math.degrees(middle_angle):.2f} degrees")
+                # self.send_twist_command(0.0, 0.0, middle_angle)   # Send twist command
+                self.calc_dist(depth,middle_angle)
+
+            if center_x_blue is not None:
+                print("Inside middle angle calculation block")
+                middle_angle = self.calculate_middle_angle(center_x_blue, color_image.shape[1])
+                print(f"Adjust camera to middle by {math.degrees(middle_angle):.2f} degrees")
+                # self.send_twist_command(0.0, 0.0, middle_angle)   # Send twist command
+                self.calc_dist(depth,middle_angle)
 
             if center_x_red is not None:
                 self.draw_line_to_middle(annotated_image, center_x_red, center_y)
@@ -239,6 +227,7 @@ class LiveObjectDetectionNode(Node):
 
             # Update prev_depth_frame for the next iteration
             self.prev_depth_frame = depth_frame
+
         # Release the camera and close the OpenCV window
         self.pipeline.stop()
         cv2.destroyAllWindows()

@@ -1,0 +1,46 @@
+[3.136s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/opt/ros/foxy /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+[4.504s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[4.508s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[4.509s] -- Found rosidl_cmake: 1.3.1 (/opt/ros/foxy/share/rosidl_cmake/cmake)
+[4.509s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[4.510s] -- Found fastrtps_cmake_module: 1.0.4 (/opt/ros/foxy/share/fastrtps_cmake_module/cmake)
+[4.510s] -- Found rmw_dds_common: 1.0.3 (/opt/ros/foxy/share/rmw_dds_common/cmake)
+[4.511s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[4.511s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.511s] -- Found rmw_fastrtps_shared_cpp: 1.3.2 (/opt/ros/foxy/share/rmw_fastrtps_shared_cpp/cmake)
+[4.511s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[4.512s] -- Found ament_cmake_gtest: 0.9.12 (/opt/ros/foxy/share/ament_cmake_gtest/cmake)
+[4.512s] -- Configuring incomplete, errors occurred!
+[4.512s] [33mCMake Warning (dev) at /opt/ros/foxy/share/ament_cmake_core/cmake/core/python.cmake:22 (find_package):
+[4.513s]   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+[4.513s]   are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+[4.513s]   the cmake_policy command to set the policy and suppress this warning.
+[4.513s] 
+[4.514s] Call Stack (most recent call first):
+[4.514s]   /opt/ros/foxy/share/ament_cmake_core/cmake/core/all.cmake:53 (include)
+[4.514s]   /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_core-extras.cmake:17 (include)
+[4.514s]   /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)
+[4.515s]   /opt/ros/foxy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)
+[4.515s]   /opt/ros/foxy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)
+[4.515s]   CMakeLists.txt:33 (find_package)
+[4.515s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[4.516s] [0m
+[4.516s] [31mCMake Error at CMakeLists.txt:51 (find_package):
+[4.516s]   By not providing "Findmicro_ros_msgs.cmake" in CMAKE_MODULE_PATH this
+[4.516s]   project has asked CMake to find a package configuration file provided by
+[4.517s]   "micro_ros_msgs", but CMake did not find one.
+[4.517s] 
+[4.517s]   Could not find a package configuration file provided by "micro_ros_msgs"
+[4.517s]   with any of the following names:
+[4.518s] 
+[4.518s]     micro_ros_msgsConfig.cmake
+[4.518s]     micro_ros_msgs-config.cmake
+[4.518s] 
+[4.519s]   Add the installation prefix of "micro_ros_msgs" to CMAKE_PREFIX_PATH or set
+[4.519s]   "micro_ros_msgs_DIR" to a directory containing one of the above files.  If
+[4.519s]   "micro_ros_msgs" provides a separate development package or SDK, be sure it
+[4.519s]   has been installed.
+[4.520s] 
+[4.520s] [0m
+[4.520s] make: *** [Makefile:166: cmake_check_build_system] Error 1
+[5.840s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6

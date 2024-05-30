@@ -1,0 +1,2 @@
+Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/opt/ros/foxy /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6

@@ -1,0 +1,25 @@
+[4.179s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/home/cadt-02/Documents/can_test_usb/ros2_can/install/rmdx6:/home/cadt-02/Documents/can_test_usb/ros2_can/install/movement:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_publisher:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_listener:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+[5.903s] [100%] Built target micro_ros_agent
+[7.583s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=/home/cadt-02/Documents/can_test_usb/ros2_can/install/rmdx6:/home/cadt-02/Documents/can_test_usb/ros2_can/install/movement:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_publisher:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_listener:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+[7.782s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/home/cadt-02/Documents/can_test_usb/ros2_can/install/rmdx6:/home/cadt-02/Documents/can_test_usb/ros2_can/install/movement:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_publisher:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_listener:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent
+[7.843s] -- Install configuration: ""
+[7.848s] -- Execute custom install script
+[7.849s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/package_run_dependencies/micro_ros_agent
+[7.849s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/parent_prefix_path/micro_ros_agent
+[7.850s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.sh
+[7.851s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.dsv
+[7.851s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.sh
+[7.851s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.dsv
+[7.852s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.bash
+[7.852s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.sh
+[7.853s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.zsh
+[7.853s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.dsv
+[7.854s] -- Symlinking: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv
+[7.878s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/packages/micro_ros_agent
+[7.879s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/ament_cmake_export_dependencies-extras.cmake
+[7.879s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig.cmake
+[7.880s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig-version.cmake
+[7.880s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.xml
+[7.881s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent
+[7.884s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/launch/micro_ros_agent_launch.py
+[7.897s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=/home/cadt-02/Documents/can_test_usb/ros2_can/install/rmdx6:/home/cadt-02/Documents/can_test_usb/ros2_can/install/movement:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_publisher:/home/cadt-02/Documents/can_test_usb/ros2_can/install/keyboard_listener:/opt/ros/foxy NX_CONNECTION=172.23.34.123 52323 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent
