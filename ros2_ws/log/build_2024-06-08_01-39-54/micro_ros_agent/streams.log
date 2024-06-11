@@ -1,0 +1,25 @@
+[3.507s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/opt/ros/foxy NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+[6.345s] [100%] Built target micro_ros_agent
+[6.348s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --build /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent -- -j6 -l6
+[6.552s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent': CMAKE_PREFIX_PATH=/opt/ros/foxy NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent
+[6.628s] -- Install configuration: ""
+[6.631s] -- Execute custom install script
+[6.632s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/package_run_dependencies/micro_ros_agent
+[6.632s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/parent_prefix_path/micro_ros_agent
+[6.632s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.sh
+[6.632s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/ament_prefix_path.dsv
+[6.633s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.sh
+[6.633s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/environment/path.dsv
+[6.633s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.bash
+[6.633s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.sh
+[6.633s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.zsh
+[6.634s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/local_setup.dsv
+[6.634s] -- Symlinking: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.dsv
+[6.640s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/ament_index/resource_index/packages/micro_ros_agent
+[6.642s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/ament_cmake_export_dependencies-extras.cmake
+[6.642s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig.cmake
+[6.642s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/cmake/micro_ros_agentConfig-version.cmake
+[6.643s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/package.xml
+[6.643s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/lib/micro_ros_agent/micro_ros_agent
+[6.647s] -- Up-to-date symlink: /home/cadt-02/Object-Detection/ros2_ws/install/micro_ros_agent/share/micro_ros_agent/launch/micro_ros_agent_launch.py
+[6.664s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 /home/cadt-02/.local/bin/cmake --install /home/cadt-02/Object-Detection/ros2_ws/build/micro_ros_agent

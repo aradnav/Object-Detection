@@ -1,0 +1,58 @@
+[7.268s] Invoking command in '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection': NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build --no-deps install_data
+[7.616s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/dist.py:476: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[7.617s] !!
+[7.618s] 
+[7.619s]         ********************************************************************************
+[7.620s]         Usage of dash-separated 'script-dir' will not be supported in future
+[7.621s]         versions. Please use the underscore name 'script_dir' instead.
+[7.621s] 
+[7.621s]         By 2024-Sep-26, you need to update your project and remove deprecated calls
+[7.621s]         or your builds will no longer be supported.
+[7.622s] 
+[7.622s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[7.623s]         ********************************************************************************
+[7.624s] 
+[7.624s] !!
+[7.624s]   opt = self.warn_dash_deprecation(opt, section)
+[8.093s] running develop
+[8.093s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/command/develop.py:42: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[8.093s] !!
+[8.094s] 
+[8.094s]         ********************************************************************************
+[8.094s]         Please avoid running ``setup.py`` and ``easy_install``.
+[8.094s]         Instead, use pypa/build, pypa/installer or other
+[8.094s]         standards-based tools.
+[8.094s] 
+[8.094s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[8.094s]         ********************************************************************************
+[8.095s] 
+[8.095s] !!
+[8.095s]   easy_install.initialize_options(self)
+[8.181s] /home/cadt-02/.local/lib/python3.8/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[8.182s] !!
+[8.183s] 
+[8.184s]         ********************************************************************************
+[8.185s]         Please avoid running ``setup.py`` directly.
+[8.185s]         Instead, use pypa/build, pypa/installer or other
+[8.186s]         standards-based tools.
+[8.186s] 
+[8.187s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[8.188s]         ********************************************************************************
+[8.189s] 
+[8.192s] !!
+[8.192s]   self.initialize_options()
+[8.621s] running egg_info
+[8.660s] writing object_detection.egg-info/PKG-INFO
+[8.660s] writing dependency_links to object_detection.egg-info/dependency_links.txt
+[8.661s] writing requirements to object_detection.egg-info/requires.txt
+[8.661s] writing top-level names to object_detection.egg-info/top_level.txt
+[8.750s] reading manifest file 'object_detection.egg-info/SOURCES.txt'
+[8.752s] writing manifest file 'object_detection.egg-info/SOURCES.txt'
+[8.904s] running build_ext
+[8.905s] Creating /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages/object-detection.egg-link (link to .)
+[8.906s] 
+[8.907s] Installed /home/cadt-02/Object-Detection/ros2_ws/build/object_detection
+[8.907s] running install_data
+[8.907s] copying resource/object_detection -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/ament_index/resource_index/packages
+[8.907s] copying package.xml -> /home/cadt-02/Object-Detection/ros2_ws/install/object_detection/share/object_detection
+[9.020s] Invoked command in '/home/cadt-02/Object-Detection/ros2_ws/build/object_detection' returned '0': NX_CONNECTION=172.23.35.102 56659 172.23.34.34 4000 PYTHONPATH=/home/cadt-02/Object-Detection/ros2_ws/build/object_detection/prefix_override:/home/cadt-02/Object-Detection/ros2_ws/install/object_detection/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/cadt-02/Object-Detection/ros2_ws/build/object_detection/build --no-deps install_data

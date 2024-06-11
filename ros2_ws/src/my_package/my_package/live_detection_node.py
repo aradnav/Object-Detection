@@ -14,24 +14,27 @@ class LiveObjectDetectionNode(Node):
     def __init__(self):
         super().__init__('live_object_detection_node')
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model = YOLO("/home/cadt-02/Downloads/best.pt")
+        self.model = YOLO("/home/cadt-02/Object-Detection/ros2_ws/modelv1.pt")
         self.initialize_camera()
         self.twist_publisher = self.create_publisher(Twist, 'cmd_vel', 10)  # Create the publisher
 
     def initialize_camera(self):
         # Initialize the RealSense D455 camera
-        self.pipeline = rs.pipeline()
-        self.config = rs.config()
-        self.config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-        self.profile = self.pipeline.start(self.config)
+        self.pipeline_2 = rs.pipeline()
+        self.config_2 = rs.config()
+        # self.config_2.enable_device('044422250293')
+        self.config_2.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+        self.config_2.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.profile = self.pipeline_2.start(self.config_2)
         self.prev_depth_frame = None
+        #realsense_camera ID
+        
 
     def capture_depth_frame(self):
         # Wait for a coherent pair of frames: depth and color
-        frames = self.pipeline.wait_for_frames()
-        depth_frame = frames.get_depth_frame()
-        return depth_frame
+        frames_2 = self.pipeline_2.wait_for_frames()
+        depth_frame_2 = frames_2.get_depth_frame()
+        return depth_frame_2
 
     def determine_movement(self, center_x, frame_width):
         """
@@ -139,18 +142,21 @@ class LiveObjectDetectionNode(Node):
             num_rows = 3
             num_cols = 3
 
-            frames = self.pipeline.wait_for_frames()
-            color_frame = frames.get_color_frame()
-            depth_frame = frames.get_depth_frame()
-            if not color_frame or not depth_frame:
+            frames_2 = self.pipeline_2.wait_for_frames()
+            color_frame_2 = frames_2.get_color_frame()
+            depth_frame_2 = frames_2.get_depth_frame()
+            if not color_frame_2 or not depth_frame_2:
                 continue
 
-            color_image = np.asanyarray(color_frame.get_data())
-            depth_image = np.asanyarray(depth_frame.get_data())
+            color_image = np.asanyarray(color_frame_2.get_data())
+            depth_image = np.asanyarray(depth_frame_2.get_data())
 
             data = self.model(color_image)
             detections = sv.Detections.from_ultralytics(data[0])
-
+            
+            #detect only bigger than 0.5 confidence
+            detections = [det for det in detections if det[2] > 0.5]
+            
             annotated_image = color_image.copy()
 
             # Initialize variables to store the center positions and depths of the detected balls
@@ -226,7 +232,7 @@ class LiveObjectDetectionNode(Node):
                 break
 
             # Update prev_depth_frame for the next iteration
-            self.prev_depth_frame = depth_frame
+            self.prev_depth_frame = depth_frame_2
 
         # Release the camera and close the OpenCV window
         self.pipeline.stop()
